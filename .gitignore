@@ -7,4 +7,5 @@
 !controllers/*.java
 !models/*.java
 !views/*.java
+!.github/*
 
