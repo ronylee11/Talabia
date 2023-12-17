@@ -6,13 +6,12 @@ import controllers.BoardController;
 public class Main {
     public static void main(String[] args) {
         // System.out.println("Talabia Chess");
-        Board b = new Board(300, 300);
+        Board b = new Board(500, 500);
 
         BoardView bv = new BoardView();
 
         BoardController bc = new BoardController(b, bv);
 
         bc.updateBoard();
-
     }
 }

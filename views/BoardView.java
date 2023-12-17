@@ -11,6 +11,8 @@ public class BoardView extends JFrame implements ActionListener {
 
     public BoardView() {
         super("Talabia Chess");
+        JPanel p = new JPanel();
+        add(p);
 
         for (int i = 0; i < 42; i++) {
             JButton button = new JButton();
@@ -21,10 +23,10 @@ public class BoardView extends JFrame implements ActionListener {
             button.setOpaque(true);
             button.setBorderPainted(false);
             button.addActionListener(this);
-            add(button);
+            p.add(button);
         }
 
-        setLayout(new GridLayout(6, 7));
+        p.setLayout(new GridLayout(6, 7));
         setSize(b.getDimensionX(), b.getDimensionY());
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +37,10 @@ public class BoardView extends JFrame implements ActionListener {
     }
 
     public void repaint() {
+        super.validate();
         super.repaint();
+        super.pack();
+        super.setSize(b.getDimensionX(), b.getDimensionY());
     }
 
     public void actionPerformed(ActionEvent e) {

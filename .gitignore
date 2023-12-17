@@ -1,0 +1,10 @@
+# All 
+*
+
+# Except
+!.gitignore
+!*.java
+!controllers/*.java
+!models/*.java
+!views/*.java
+
