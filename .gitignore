@@ -1,11 +1,5 @@
 # All 
-*
-
-# Except
-!.gitignore
-!*.java
-!controllers/*.java
-!models/*.java
-!views/*.java
-!.github/*
-
+*.class
+views/*.class
+controllers/*.class
+models/*.class
