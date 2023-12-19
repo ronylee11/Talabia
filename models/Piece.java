@@ -13,7 +13,7 @@ public abstract class Piece {
         return imageUrl;
     }
 
-    public int getCoordnateX() {
+    public int getCoordinateX() {
         return coordinateX;
     }
 
