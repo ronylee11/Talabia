@@ -1,6 +1,6 @@
 package models;
 
-public class Piece {
+public abstract class Piece {
     private String imageUrl;
     private int coordinateX;
     private int coordinateY;
