@@ -5,8 +5,10 @@ public abstract class Piece {
     private int coordinateX;
     private int coordinateY;
 
-    public Piece() {
-
+    public Piece(String imageUrl, int coordinateX, int coordinateY) {
+        this.imageUrl = imageUrl;
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
     }
 
     public String getImageUrl() {
@@ -33,4 +35,5 @@ public abstract class Piece {
         coordinateY = y;
     }
 
+    public abstract void movePiece(int coordinateX, int coordinateY);
 }

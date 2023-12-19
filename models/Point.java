@@ -1,26 +1,24 @@
 package models;
 
 public class Point extends Piece {
-    private String imageUrl;
     private int step;
 
-    public Point(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
+    public Point(String imageUrl, int coordinateX, int coordinateY) {
+        super(imageUrl, coordinateX, coordinateY);
     }
 
     public int getStep() {
         return step;
     }
 
-    public void setImageUrl(String url) {
-        imageUrl = url;
-    }
-
     public void setStep(int st) {
         step = st;
+    }
+
+    @Override
+    public void movePiece(int x, int y) {
+        System.out.println("Point piece moved to (" + x + ", " + y + ")");
+        super.setCoordinateX(x);
+        super.setCoordinateY(y);
     }
 }
