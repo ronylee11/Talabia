@@ -29,6 +29,7 @@ public class BoardView extends JFrame implements ActionListener {
         p.setLayout(new GridLayout(6, 7));
         setSize(b.getDimensionX(), b.getDimensionY());
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
