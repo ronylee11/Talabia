@@ -3,6 +3,7 @@ package views;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import models.Piece;
 
 @SuppressWarnings("serial")
 public class PieceView extends JButton {
@@ -16,5 +17,9 @@ public class PieceView extends JButton {
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
     }
 }

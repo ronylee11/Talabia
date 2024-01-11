@@ -4,6 +4,14 @@ import models.Piece;
 import views.PieceView;
 
 public class PieceController {
+    private Piece model;
+    private PieceView view;
+
+    public PieceController(Piece p, PieceView pv) {
+        this.model = p;
+        this.view = pv;
+        view.setPiece(model);
+    }
 
     public void movePiece(int x, int y) {
 
