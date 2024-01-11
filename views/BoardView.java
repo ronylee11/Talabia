@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.util.*;
 import models.Board;
 
+@SuppressWarnings("serial")
 public class BoardView extends JFrame implements ActionListener {
     private Board b = new Board();
 
@@ -15,7 +16,7 @@ public class BoardView extends JFrame implements ActionListener {
         add(p);
 
         for (int i = 0; i < 42; i++) {
-            JButton button = new JButton();
+            PieceView button = new PieceView();
             if (i % 2 == 0)
                 button.setBackground(Color.WHITE);
             else
