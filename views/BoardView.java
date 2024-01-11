@@ -46,7 +46,7 @@ public class BoardView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JButton btn = (JButton) e.getSource();
-        System.out.println("Button clicked!");
+        PieceView btn = (PieceView) e.getSource();
+        System.out.println("Button clicked! This button is " + btn.boardCoordinate);
     }
 }
