@@ -33,13 +33,6 @@ public class PieceView extends JButton {
         pieceSpawned++;
         boardCoordinate = notationSequence[pieceSpawned - 1];
 
-        //if ((pieceSpawned >= 1 && pieceSpawned <= 14) || (pieceSpawned >= 29 && pieceSpawned <= 42)) {
-            //// generate respective pieces
-            //setText(pointLocations[pieceSpawned - 1]);
-        //} else {
-            //setText(" ");
-        //}
-
         setPreferredSize(new Dimension(50, 50));
         setBorderPainted(false);
         setFocusPainted(false);

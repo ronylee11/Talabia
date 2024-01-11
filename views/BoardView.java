@@ -5,10 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 import models.Board;
+import controllers.BoardController;
 
 @SuppressWarnings("serial")
 public class BoardView extends JFrame implements ActionListener {
     private Board b = new Board();
+    PieceView[] buttons = new PieceView[42];
 
     public BoardView() {
         super("Talabia Chess");
@@ -17,6 +19,7 @@ public class BoardView extends JFrame implements ActionListener {
 
         for (int i = 0; i < 42; i++) {
             PieceView button = new PieceView();
+            buttons[i] = button;
             if (i % 2 == 0)
                 button.setBackground(Color.WHITE);
             else
