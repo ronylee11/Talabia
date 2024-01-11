@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-    @SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class PieceView extends JButton {
     static int pieceSpawned = 0; // max: 28
 
