@@ -1,15 +1,16 @@
 package models;
 
+import java.text.MessageFormat;
+
 public class Plus extends Piece {
 
-    public Plus(String imageUrl) {
-        super(imageUrl, 0, 0);
+    public Plus(String imageUrl, String coordinate) {
+        super(imageUrl, coordinate);
     }
 
     @Override
-    public void movePiece(int x, int y) {
-        System.out.println("Plus piece moved to (" + x + ", " + y + ")");
-        super.setCoordinateX(x);
-        super.setCoordinateY(y);
+    public void movePiece(String newCoordinate) {
+        System.out.println(MessageFormat.format("Time piece moved to ({0})", newCoordinate));
+        super.setCoordinate(newCoordinate);
     }
 }

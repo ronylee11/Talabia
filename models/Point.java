@@ -1,10 +1,12 @@
 package models;
 
+import java.text.MessageFormat;
+
 public class Point extends Piece {
     private int step;
 
-    public Point(String imageUrl, int coordinateX, int coordinateY) {
-        super(imageUrl, coordinateX, coordinateY);
+    public Point(String imageUrl, String coordinate) {
+        super(imageUrl, coordinate);
     }
 
     public int getStep() {
@@ -16,9 +18,8 @@ public class Point extends Piece {
     }
 
     @Override
-    public void movePiece(int x, int y) {
-        System.out.println("Point piece moved to (" + x + ", " + y + ")");
-        super.setCoordinateX(x);
-        super.setCoordinateY(y);
+    public void movePiece(String newCoordinate) {
+        System.out.println(MessageFormat.format("Time piece moved to ({0})", newCoordinate));
+        super.setCoordinate(newCoordinate);
     }
 }

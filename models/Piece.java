@@ -2,38 +2,28 @@ package models;
 
 public abstract class Piece {
     private String imageUrl;
-    private int coordinateX;
-    private int coordinateY;
+    private String coordinate;
 
-    public Piece(String imageUrl, int coordinateX, int coordinateY) {
+    public Piece(String imageUrl, String coordinate) {
         this.imageUrl = imageUrl;
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
+        this.coordinate = coordinate;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public int getCoordinateX() {
-        return coordinateX;
-    }
-
-    public int getCoordinateY() {
-        return coordinateY;
+    public String getCoordinate() {
+        return coordinate;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public void setCoordinateX(int x) {
-        coordinateX = x;
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate;
     }
 
-    public void setCoordinateY(int y) {
-        coordinateY = y;
-    }
-
-    public abstract void movePiece(int coordinateX, int coordinateY);
+    public abstract void movePiece(String newCoordinate);
 }
