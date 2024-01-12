@@ -35,6 +35,20 @@ public class PieceView extends JButton {
         // add coordinate
         pieceSpawned++;
         boardCoordinate = notationSequence[pieceSpawned - 1];
+        // generate respective piece on locations
+        for (int i = 0; i < pointLocations.length; i++) {
+            if (boardCoordinate.equals(pointLocations[i])) {
+                if (boardCoordinate.charAt(1) == '2') {
+                    Point point = new Point("assets/arrow-y", boardCoordinate);
+                    this.setIcon(new ImageIcon("assets/arrow-y.jpg"));
+                    break;
+                } else {
+                    Point point = new Point("assets/arrow-b", boardCoordinate);
+                    this.setIcon(new ImageIcon("assets/arrow-b.jpg"));
+                    break;
+                }
+            }
+        }
 
         setPreferredSize(new Dimension(50, 50));
         setBorderPainted(false);
