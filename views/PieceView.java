@@ -6,14 +6,17 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import models.Piece;
+import models.Point;
 
 @SuppressWarnings("serial")
 public class PieceView extends JButton {
     static int pieceSpawned = 0; // max: 42 // assign coordinates on Board from a6~g6, a5~g5.. to 1~14, 29~42
-    static String[] pointLocations = {"a2", "b2", "c2", "d2", "e2", "f2", "g2", "a5", "b5", "c5", "d5", "e5", "f5", "g5"};
-    String[] notationSequence = generateNotationSequence();
-    String boardCoordinate = "";
+    static private String[] pointLocations = {"a2", "b2", "c2", "d2", "e2", "f2", "g2", "a5", "b5", "c5", "d5", "e5", "f5", "g5"};
+    private String[] notationSequence = generateNotationSequence();
+    private String boardCoordinate = "";
     Piece piece;
+    Point[] point;
+
 
     String[] generateNotationSequence() {
         ArrayList<String> notationSequence = new ArrayList<String>();
@@ -39,7 +42,7 @@ public class PieceView extends JButton {
         setContentAreaFilled(false);
     }
 
-    public void setPiece(Piece piece) {
-        this.piece = piece;
+    public String getCoordinate() {
+        return boardCoordinate;
     }
 }

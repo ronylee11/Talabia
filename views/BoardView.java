@@ -10,7 +10,7 @@ import controllers.BoardController;
 @SuppressWarnings("serial")
 public class BoardView extends JFrame implements ActionListener {
     private Board b = new Board();
-    PieceView[] buttons = new PieceView[42];
+    private PieceView[] buttons = new PieceView[42];
     // buttons = [
     // 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6',
     // 'a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5',
@@ -58,6 +58,10 @@ public class BoardView extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         PieceView btn = (PieceView) e.getSource();
-        System.out.println("Button clicked! This button is " + btn.boardCoordinate);
+        System.out.println("Button clicked! This button is " + btn.getCoordinate());
+    }
+
+    public PieceView[] getButtons() {
+        return buttons;
     }
 }
