@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import models.Hourglass;
-import models.Piece;
-import models.Plus;
+import models.*;
 import models.Point;
-import models.Sun;
-import models.Time;
 
 @SuppressWarnings("serial")
 public class PieceView extends JButton {
