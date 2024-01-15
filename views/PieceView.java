@@ -39,6 +39,8 @@ public class PieceView extends JButton {
         boardCoordinate = notationSequence[pieceSpawned - 1];
         // connect PieceController
         controller = new PieceController(model, this);
+        // set text
+        controller.setNotations(boardCoordinate);
         // generate respective piece on locations
         controller.generatePieces();
 

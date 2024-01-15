@@ -1,6 +1,6 @@
 package controllers;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import models.*;
 import models.Piece;
 import views.PieceView;
@@ -78,6 +78,21 @@ public class PieceController {
                 }
             }
         }
+    }
+
+    public void setNotations(String boardCoordinate) {
+        // if boardCoordinate.charAt(1) == '1', set the columns, a~g
+        // if boardCoordinate.charAt(0) == 'a', set the row, 1~6
+        // if boardCoordinate == 'a1', setText to 'a1'
+        if (boardCoordinate.equals("a1")) {
+            view.setText(boardCoordinate);
+        } else if (boardCoordinate.charAt(1) == '1') {
+            view.setText("" + boardCoordinate.charAt(0));
+        } else if (boardCoordinate.charAt(0) == 'a') {
+            view.setText("" + boardCoordinate.charAt(1));
+        }  
+        view.setVerticalTextPosition(JButton.BOTTOM);
+        view.setHorizontalTextPosition(JButton.CENTER);
     }
 
     public void movePiece(int x, int y) {
