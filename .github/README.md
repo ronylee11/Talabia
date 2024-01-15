@@ -8,7 +8,7 @@ A chess game with a twist, where: After 2 turns (counting one yellow move and on
 
 | Task                                | Assignee                                                                       | Due    |
 | ----------------------------------- | ------------------------------------------------------------------------------ | ------ |
-| Render each piece on board          | [Sally](https://github.com/SALLYKZX)                                           | 15 Jan |
+| Render each piece on board ✅       | [Sally](https://github.com/SALLYKZX)                                           | 15 Jan |
 | Board notation                      | [Rony](https://github.com/ronylee11)                                           | 18 Jan |
 | Piece logic                         | [GuangYu](https://github.com/BaiterYu0101), [Chia](https://github.com/chia-zx) | 21 Jan |
 | Swap Time and Plus each Round       | [Jihin](https://github.com/AUJIHIN)                                            | 23 Jan |
