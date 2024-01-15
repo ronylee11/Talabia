@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
-import models.Piece;
+import models.*;
 import models.Point;
 
 @SuppressWarnings("serial")

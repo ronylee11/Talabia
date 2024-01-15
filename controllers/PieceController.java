@@ -10,7 +10,6 @@ public class PieceController {
     public PieceController(Piece p, PieceView pv) {
         this.model = p;
         this.view = pv;
-        view.setPiece(model);
     }
 
     public void movePiece(int x, int y) {
@@ -22,6 +21,7 @@ public class PieceController {
     }
 
     public boolean isMoveValid() {
+        return false;
     }
 
 }
