@@ -12,7 +12,7 @@ import models.Point;
 @SuppressWarnings("serial")
 public class PieceView extends JButton {
     static int pieceSpawned = 0; // max: 42 // assign coordinates on Board from a6~g6, a5~g5.. to 1~14, 29~42
-    static private String[] pointLocations = {"a1", "b1", "c1", "d1", "e1", "f1", "g1",
+    static private String[] pieceLocations = {"a1", "b1", "c1", "d1", "e1", "f1", "g1",
                                                 "a2", "b2", "c2", "d2", "e2", "f2", "g2",
                                                 "a5", "b5", "c5", "d5", "e5", "f5", "g5",
                                                 "a6", "b6", "c6", "d6", "e6", "f6", "g6"};
@@ -44,8 +44,8 @@ public class PieceView extends JButton {
         pieceSpawned++;
         boardCoordinate = notationSequence[pieceSpawned - 1];
         // generate respective piece on locations
-        for (int i = 0; i < pointLocations.length; i++) {
-            if (boardCoordinate.equals(pointLocations[i])) {
+        for (int i = 0; i < pieceLocations.length; i++) {
+            if (boardCoordinate.equals(pieceLocations[i])) {
                 if (boardCoordinate.charAt(1) == '2') {
                     Point point = new Point("assets/arrow-y", boardCoordinate);
                     this.setIcon(new ImageIcon("assets/arrow-y.png"));
