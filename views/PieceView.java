@@ -66,7 +66,7 @@ public class PieceView extends JButton {
                         break;
                     // hourglass yellow
                     } else if (notationSequence[pieceSpawned - 1].equals ("b1") || notationSequence[pieceSpawned - 1].equals("f1")){
-                        Hourglass houglass = new Hourglass("assets/hourglass-y", boardCoordinate);
+                        Hourglass hourglass = new Hourglass("assets/hourglass-y", boardCoordinate);
                         this.setIcon(new ImageIcon("assets/hourglass-y.png"));
                         break;
                     // cross yellow
