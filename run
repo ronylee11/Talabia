@@ -1,0 +1,6 @@
+#!/bin/sh
+
+javac models/*.java
+javac views/*.java
+javac controllers/*.java
+javac *.java && java Main
