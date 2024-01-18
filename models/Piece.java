@@ -1,12 +1,19 @@
 package models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Piece {
     private String imageUrl;
     private String coordinate;
+    private PieceColor color;
+    private static Set<String> possibleMoves;
 
-    public Piece(String imageUrl, String coordinate) {
+    public Piece(String imageUrl, String coordinate, PieceColor color) {
         this.imageUrl = imageUrl;
         this.coordinate = coordinate;
+        this.color = color;
+        possibleMoves = new HashSet<>();
     }
 
     public String getImageUrl() {
@@ -15,6 +22,10 @@ public abstract class Piece {
 
     public String getCoordinate() {
         return coordinate;
+    }
+
+    public PieceColor getColor() {
+        return color;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -26,4 +37,16 @@ public abstract class Piece {
     }
 
     public abstract void movePiece(String newCoordinate);
+
+    public static Set<String> getPossibleMovesList() {
+        return possibleMoves;
+    }
+
+    public void addToPossibleMovesList(String coordinate) {
+        possibleMoves.add(coordinate);
+    }
+
+    public void clearPossibleMovesList() {
+        possibleMoves.clear();
+    }
 }

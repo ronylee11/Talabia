@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 
 public class Plus extends Piece {
 
-    public Plus(String imageUrl, String coordinate) {
-        super(imageUrl, coordinate);
+    public Plus(String imageUrl, String coordinate, PieceColor color) {
+        super(imageUrl, coordinate, color);
     }
 
     @Override
@@ -13,4 +13,5 @@ public class Plus extends Piece {
         System.out.println(MessageFormat.format("Time piece moved to ({0})", newCoordinate));
         super.setCoordinate(newCoordinate);
     }
+
 }

@@ -3,8 +3,8 @@ package models;
 import java.text.MessageFormat;
 
 public class Sun extends Piece {
-    public Sun(String imageUrl, String coordinate) {
-        super(imageUrl, coordinate);
+    public Sun(String imageUrl, String coordinate, PieceColor color) {
+        super(imageUrl, coordinate, color);
     }
 
     @Override

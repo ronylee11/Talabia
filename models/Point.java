@@ -3,18 +3,10 @@ package models;
 import java.text.MessageFormat;
 
 public class Point extends Piece {
-    private int step;
 
-    public Point(String imageUrl, String coordinate) {
-        super(imageUrl, coordinate);
-    }
-
-    public int getStep() {
-        return step;
-    }
-
-    public void setStep(int st) {
-        step = st;
+    public Point(String imageUrl, String coordinate, PieceColor color) {
+        super(imageUrl, coordinate, color);
+        
     }
 
     @Override
