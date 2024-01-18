@@ -3,9 +3,11 @@ package views;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
+
 import models.Board;
 import controllers.BoardController;
+import controllers.PieceController;
+import controllers.PieceControllerFactory;
 
 @SuppressWarnings("serial")
 public class BoardView extends JFrame implements ActionListener {
@@ -48,7 +50,13 @@ public class BoardView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        controller.resetIcon();
         PieceView btn = (PieceView) e.getSource();
         System.out.println("Button clicked! This button is " + btn.getCoordinate());
+
+        PieceController pieceController = PieceControllerFactory.getController(btn.getCoordinate(), btn);
+        pieceController.getPossibleMove();
+        controller.addHint();
+        
     }
 }

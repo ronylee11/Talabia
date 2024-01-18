@@ -1,10 +1,9 @@
 package controllers;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
 import models.Board;
+import models.Piece;
 import views.BoardView;
 import views.PieceView;
 
@@ -41,4 +40,24 @@ public class BoardController {
             p.add(button);
         }
     }
+
+    // 
+    public void addHint() {
+        for (PieceView btn : buttons) {
+            if (Piece.getPossibleMovesList().contains(btn.getCoordinate())) {
+                btn.setIcon(new ImageIcon("assets/hint.png"));
+            }
+        }
+    }
+
+    // remove hint
+    public void resetIcon() {
+        for (PieceView btn : buttons) {
+            if (Piece.getPossibleMovesList().contains(btn.getCoordinate())) {
+                btn.setIcon(null);
+            }
+        }
+    }
+
+    
 }

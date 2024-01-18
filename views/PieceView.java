@@ -3,11 +3,9 @@ package views;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import models.*;
-import models.Point;
 import controllers.PieceController;
 
 @SuppressWarnings("serial")
@@ -40,7 +38,7 @@ public class PieceView extends JButton {
         // connect PieceController
         controller = new PieceController(model, this);
         // set text
-        controller.setNotations(boardCoordinate);
+        // controller.setNotations(boardCoordinate);
         // generate respective piece on locations
         controller.generatePieces();
 
