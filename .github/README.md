@@ -14,3 +14,5 @@ A chess game with a twist, where: After 2 turns (counting one yellow move and on
 | Swap Time and Plus each Round       | [Jihin](https://github.com/AUJIHIN)                                            | 23 Jan |
 | End Game (Detect CheckMate)         | [Rony](https://github.com/ronylee11)                                           | 26 Jan |
 | Customize Board (Finishing touches) | [Rony](https://github.com/ronylee11)                                           | 26 Jan |
+
+Testers: [Sally](https://github.com/SALLYKZX), [Jihin](https://github.com/AUJIHIN)
