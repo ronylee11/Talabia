@@ -12,6 +12,8 @@ public class HourglassController extends PieceController{
         super(hourglass, view);
         this.hourglass = hourglass;
         this.pieces = PieceCoordinate.getPieceCoordinate();
+
+        checkPossibleMove();
     }
 
     // check all the possible move
@@ -28,24 +30,13 @@ public class HourglassController extends PieceController{
             char newColumn = (char) (currentCoordinate.charAt(0) + columns[i]);
             int newRow = (Character.getNumericValue(currentCoordinate.charAt(1)) + rows[i]);
             targetCoordinate = "" + newColumn + newRow;
-            if (checkValidMove(targetCoordinate)) {
+            if (isMoveValid(targetCoordinate)) {
                 hourglass.addToPossibleMovesList(targetCoordinate);
             }
         }
     }
 
-    @Override
-    public void getPossibleMove() {
-        checkPossibleMove();
-        System.out.println("Possible move : ");
-        for (String mv : hourglass.getPossibleMovesList()) {
-            System.out.println(mv);
-        }
-        System.out.println();
-    }
-
-
-    public boolean checkValidMove(String targetCoordinate) {
+    private boolean isMoveValid(String targetCoordinate) {
         // check if on the board
         if (targetCoordinate.charAt(1) >= '1' && targetCoordinate.charAt(1) <= '6'
             && targetCoordinate.charAt(0) >= 'a' && targetCoordinate.charAt(0) <= 'g') {
@@ -59,10 +50,6 @@ public class HourglassController extends PieceController{
                 return true;
         }
         return false;
-    }
-
-    public void movePiece(String targetCoordinate) {
-        // String coordinate = hourglass.getCoordinate();
     }
 
 }

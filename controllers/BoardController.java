@@ -1,9 +1,13 @@
 package controllers;
 
 import java.awt.*;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import models.Board;
 import models.Piece;
+import models.PieceCoordinate;
 import views.BoardView;
 import views.PieceView;
 
@@ -35,29 +39,35 @@ public class BoardController {
             else
                 button.setBackground(Color.BLACK);
             button.setOpaque(true);
-            button.setBorderPainted(false);
+            button.setBorderPainted(true);
             button.addActionListener(view);
             p.add(button);
         }
     }
 
-    // 
-    public void addHint() {
+    //
+    public void resetHint() {
         for (PieceView btn : buttons) {
             if (Piece.getPossibleMovesList().contains(btn.getCoordinate())) {
-                btn.setIcon(new ImageIcon("assets/hint.png"));
+                btn.setBorder(new LineBorder(Color.GREEN, 6));
+            }
+            else {
+                btn.setBorder(null);
             }
         }
     }
 
-    // remove hint
-    public void resetIcon() {
+    // change icon after piece move
+    public void addIcon(String previousCoordinate, String newCoordinate) {
         for (PieceView btn : buttons) {
-            if (Piece.getPossibleMovesList().contains(btn.getCoordinate())) {
+            if (previousCoordinate.equals(btn.getCoordinate())) {
                 btn.setIcon(null);
             }
+            else if (newCoordinate.equals(btn.getCoordinate())) {
+                String url = PieceCoordinate.getPieceCoordinate().getPiece(newCoordinate).getImageUrl();
+                btn.setIcon(new ImageIcon(url));
+            }
         }
     }
-
     
 }

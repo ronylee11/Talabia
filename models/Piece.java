@@ -42,6 +42,10 @@ public abstract class Piece {
         return possibleMoves;
     }
 
+    public static void clearPossibleList () {
+        possibleMoves.clear();
+    }
+
     public void addToPossibleMovesList(String coordinate) {
         possibleMoves.add(coordinate);
     }

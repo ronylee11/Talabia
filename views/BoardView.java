@@ -2,9 +2,11 @@ package views;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import models.Board;
+import models.Piece;
 import controllers.BoardController;
 import controllers.PieceController;
 import controllers.PieceControllerFactory;
@@ -13,6 +15,7 @@ import controllers.PieceControllerFactory;
 public class BoardView extends JFrame implements ActionListener {
     private Board model;
     private BoardController controller;
+    private String previousCoordinate;
 
     // Board
     // 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6',
@@ -50,13 +53,40 @@ public class BoardView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        controller.resetIcon();
+        controller.resetHint();
         PieceView btn = (PieceView) e.getSource();
-        System.out.println("Button clicked! This button is " + btn.getCoordinate());
+        String coordinate = btn.getCoordinate();
+        System.out.println("Button clicked! This button is " + coordinate);
 
-        PieceController pieceController = PieceControllerFactory.getController(btn.getCoordinate(), btn);
-        pieceController.getPossibleMove();
-        controller.addHint();
-        
+        PieceController pieceController;
+
+        if (previousCoordinate != null) {
+            pieceController = isControllerValid(previousCoordinate, btn);
+
+            if (Piece.getPossibleMovesList().contains(coordinate)) {
+                pieceController.movePiece(previousCoordinate, coordinate);
+                controller.addIcon(previousCoordinate, coordinate);
+                Piece.clearPossibleList();
+                coordinate = null;
+            }
+            else {
+                Piece.clearPossibleList();
+                isControllerValid(coordinate, btn);
+            }
+        }
+        else {
+            Piece.clearPossibleList();
+            isControllerValid(coordinate, btn);
+        }
+        controller.resetHint();
+        previousCoordinate = coordinate;
+    }
+
+    private PieceController isControllerValid(String coordinate, PieceView btn) {
+        PieceController pieceController = PieceControllerFactory.getController(coordinate, btn);
+        if (pieceController != null)
+            pieceController.checkPossibleMove();
+
+        return pieceController;
     }
 }

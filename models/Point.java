@@ -3,10 +3,23 @@ package models;
 import java.text.MessageFormat;
 
 public class Point extends Piece {
+    private boolean forward = true;
 
     public Point(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
         
+    }
+
+    public boolean isForward() {
+        return forward;
+    }
+
+    public void setToForward() {
+        forward = true;
+    }
+
+    public void setToBackward() {
+        forward = false;
     }
 
     @Override

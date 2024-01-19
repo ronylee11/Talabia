@@ -32,12 +32,7 @@ public class PieceCoordinate {
         return pieceCoordinateMap.get(coordinate);
     }
 
-    public void setPiece() {
-        
+    public void removePiece(String coordinate) {
+        pieceCoordinateMap.remove(coordinate);
     }
-
-    // public void setPiece(Piece piece) {
-    //     this.piece = piece;
-    // }
-
 }

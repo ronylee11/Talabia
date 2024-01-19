@@ -25,37 +25,37 @@ public class PieceController {
         for (int i = 0; i < pieceLocations.length; i++) {
             if (view.getCoordinate().equals(pieceLocations[i])) {
                 if (view.getCoordinate().charAt(1) == '2') {
-                    Point point = new Point("assets/arrow-y", view.getCoordinate(), PieceColor.YELLOW);
+                    Point point = new Point("assets/arrow-y.png", view.getCoordinate(), PieceColor.YELLOW);
                     view.setIcon(new ImageIcon("assets/arrow-y.png"));
                     pieceCoordinate.placePiece(view.getCoordinate(), point);
                     break;
                 } else if ((view.getCoordinate().charAt(1) == '5')){
-                    Point point = new Point("assets/arrow-b", view.getCoordinate(), PieceColor.BLUE);
+                    Point point = new Point("assets/arrow-b.png", view.getCoordinate(), PieceColor.BLUE);
                     view.setIcon(new ImageIcon("assets/arrow-b.png"));
                     pieceCoordinate.placePiece(view.getCoordinate(), point);
                     break;
                 } else if ((view.getCoordinate().charAt(1) == '1')){ // yellow pieces
                     // plus yellow
                     if (notationSequence[pieceSpawned - 1].equals ("a1") || notationSequence[pieceSpawned - 1].equals("g1")){
-                        Plus plus = new Plus("assets/plus-y", view.getCoordinate(), PieceColor.YELLOW);
+                        Plus plus = new Plus("assets/plus-y.png", view.getCoordinate(), PieceColor.YELLOW);
                         view.setIcon(new ImageIcon("assets/plus-y.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), plus);
                         break;
                     // hourglass yellow
                     } else if (notationSequence[pieceSpawned - 1].equals ("b1") || notationSequence[pieceSpawned - 1].equals("f1")){
-                        Hourglass hourglass = new Hourglass("assets/hourglass-y", view.getCoordinate(), PieceColor.YELLOW);
+                        Hourglass hourglass = new Hourglass("assets/hourglass-y.png", view.getCoordinate(), PieceColor.YELLOW);
                         view.setIcon(new ImageIcon("assets/hourglass-y.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), hourglass);
                         break;
                     // cross yellow
                     } else if (notationSequence[pieceSpawned - 1].equals ("c1") || notationSequence[pieceSpawned - 1].equals("e1")){
-                        Time time = new Time("assets/cross-y", view.getCoordinate(), PieceColor.YELLOW);
+                        Time time = new Time("assets/cross-y.png", view.getCoordinate(), PieceColor.YELLOW);
                         view.setIcon(new ImageIcon("assets/cross-y.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), time);
                         break;
                     // sun yellow
                     } else {
-                        Sun sun = new Sun("assets/sun-y", view.getCoordinate(), PieceColor.YELLOW);
+                        Sun sun = new Sun("assets/sun-y.png", view.getCoordinate(), PieceColor.YELLOW);
                         view.setIcon(new ImageIcon("assets/sun-y.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), sun);
                         break;
@@ -63,25 +63,25 @@ public class PieceController {
                 } else if ((view.getCoordinate().charAt(1) == '6')){ // blue pieces
                     // plus blue
                     if (notationSequence[pieceSpawned - 1].equals ("a6") || notationSequence[pieceSpawned - 1].equals("g6")){
-                        Plus plus = new Plus("assets/plus-b", view.getCoordinate(), PieceColor.BLUE);
+                        Plus plus = new Plus("assets/plus-b.png", view.getCoordinate(), PieceColor.BLUE);
                         view.setIcon(new ImageIcon("assets/plus-b.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), plus);
                         break;
                     // hourglass blue
                     } else if (notationSequence[pieceSpawned - 1].equals ("b6") || notationSequence[pieceSpawned - 1].equals("f6")){
-                        Hourglass hourglass = new Hourglass("assets/hourglass-b", view.getCoordinate(), PieceColor.BLUE);
+                        Hourglass hourglass = new Hourglass("assets/hourglass-b.png", view.getCoordinate(), PieceColor.BLUE);
                         view.setIcon(new ImageIcon("assets/hourglass-b.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), hourglass);
                         break;
                     // cross blue
                     } else if (notationSequence[pieceSpawned - 1].equals ("c6") || notationSequence[pieceSpawned - 1].equals("e6")){
-                        Time time = new Time("assets/cross-b", view.getCoordinate(), PieceColor.BLUE);
+                        Time time = new Time("assets/cross-b.png", view.getCoordinate(), PieceColor.BLUE);
                         view.setIcon(new ImageIcon("assets/cross-b.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), time);
                         break;
                     // sun blue
                     } else {
-                        Sun sun = new Sun("assets/sun-b", view.getCoordinate(), PieceColor.BLUE);
+                        Sun sun = new Sun("assets/sun-b.png", view.getCoordinate(), PieceColor.BLUE);
                         view.setIcon(new ImageIcon("assets/sun-b.png"));
                         pieceCoordinate.placePiece(view.getCoordinate(), sun);
                         break;
@@ -106,8 +106,14 @@ public class PieceController {
         view.setHorizontalTextPosition(JButton.CENTER);
     }
 
-    public void movePiece(int x, int y) {
-
+    public void movePiece(String currentCoordinate, String newCoordinate) {
+        Piece piece = PieceCoordinate.getPieceCoordinate().getPiece(currentCoordinate);
+        PieceCoordinate.pieceCoordinate.removePiece(currentCoordinate);
+        if (PieceCoordinate.pieceCoordinate.getPiece(newCoordinate) != null) {
+            PieceCoordinate.pieceCoordinate.removePiece(newCoordinate);
+        }
+        piece.setCoordinate(newCoordinate);
+        PieceCoordinate.pieceCoordinate.placePiece(newCoordinate, piece);
     }
 
     public void switchMovingMethod() {
@@ -119,7 +125,5 @@ public class PieceController {
     }
 
     public void checkPossibleMove() {};
-
-    public void getPossibleMove() {};
 
 }

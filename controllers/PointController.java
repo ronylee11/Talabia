@@ -3,14 +3,15 @@ package controllers;
 import models.Piece;
 import views.PieceView;
 import models.PieceCoordinate;
+import models.Point;
 
 public class PointController extends PieceController{
-    private Piece point;
+    private Point point;
     private PieceCoordinate pieces;
     
     public PointController (Piece point, PieceView view) {
         super(point, view);
-        this.point = point;
+        this.point = (Point) point;
         this.pieces = PieceCoordinate.getPieceCoordinate();
         
         checkPossibleMove();
@@ -21,27 +22,26 @@ public class PointController extends PieceController{
     public void checkPossibleMove() {
         point.clearPossibleMovesList();
         String currentCoordinate = point.getCoordinate();
+        if (currentCoordinate.charAt(1) == '6') 
+            point.setToBackward();
+        else if (currentCoordinate.charAt(0) == '0') 
+            point.setToForward();
+
         String targetCoordinate;
         for (int i = 1; i < 3; i++) {
-            targetCoordinate = "" + currentCoordinate.charAt(0) + (Character.getNumericValue(currentCoordinate.charAt(1))+i);
-            if (checkValidMove(targetCoordinate)) {
+            if (point.isForward()) {
+                targetCoordinate = "" + currentCoordinate.charAt(0) + (Character.getNumericValue(currentCoordinate.charAt(1))+i);
+            }
+            else {
+                targetCoordinate = "" + currentCoordinate.charAt(0) + (Character.getNumericValue(currentCoordinate.charAt(1))-i);
+            }
+            if (isMoveValid(targetCoordinate)) {
                 point.addToPossibleMovesList(targetCoordinate);
             }
         }
     }
 
-    @Override
-    public void getPossibleMove() {
-        checkPossibleMove();
-        System.out.println("Possible move : ");
-        for (String mv : point.getPossibleMovesList()) {
-            System.out.println(mv);
-        }
-        System.out.println();
-    }
-
-
-    public boolean checkValidMove(String targetCoordinate) {
+    private boolean isMoveValid(String targetCoordinate) {
         // check if on the board
         if (targetCoordinate.charAt(1) >= '1' && targetCoordinate.charAt(1) <= '6') {
             // check is there any obstacles
@@ -54,10 +54,6 @@ public class PointController extends PieceController{
                 return true;
         }
         return false;
-    }
-
-    public void movePiece(String targetCoordinate) {
-        // String coordinate = point.getCoordinate();
     }
 
 }
