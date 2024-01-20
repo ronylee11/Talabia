@@ -16,6 +16,8 @@ public class PieceControllerFactory {
             return new PointController(piece, view);
         else if (piece instanceof Hourglass)
             return new HourglassController(piece, view);
+        else if (piece instanceof Sun)
+            return new SunController(piece, view);
         
         return null;
     }

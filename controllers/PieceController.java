@@ -108,12 +108,12 @@ public class PieceController {
 
     public void movePiece(String currentCoordinate, String newCoordinate) {
         Piece piece = PieceCoordinate.getPieceCoordinate().getPiece(currentCoordinate);
-        PieceCoordinate.pieceCoordinate.removePiece(currentCoordinate);
-        if (PieceCoordinate.pieceCoordinate.getPiece(newCoordinate) != null) {
-            PieceCoordinate.pieceCoordinate.removePiece(newCoordinate);
+        PieceCoordinate.getPieceCoordinate().removePiece(currentCoordinate);
+        if (PieceCoordinate.getPieceCoordinate().getPiece(newCoordinate) != null) {
+            PieceCoordinate.getPieceCoordinate().removePiece(newCoordinate);
         }
         piece.setCoordinate(newCoordinate);
-        PieceCoordinate.pieceCoordinate.placePiece(newCoordinate, piece);
+        PieceCoordinate.getPieceCoordinate().placePiece(newCoordinate, piece);
     }
 
     public void switchMovingMethod() {
@@ -121,6 +121,22 @@ public class PieceController {
     }
 
     public boolean isMoveValid() {
+        return false;
+    }
+
+    public boolean isMoveValid(String targetCoordinate, PieceCoordinate piecesCoordinate, Piece piece) {
+        // check if on the board
+        if (targetCoordinate.charAt(1) >= '1' && targetCoordinate.charAt(1) <= '6'
+            && targetCoordinate.charAt(0) >= 'a' && targetCoordinate.charAt(0) <= 'g') {
+            // check is there any obstacles
+            if (piecesCoordinate.isOccupied(targetCoordinate)) {
+                // check if having different color
+                if (!piece.getColor().equals(piecesCoordinate.getPiece(targetCoordinate).getColor()))
+                    return true;
+            }
+            else
+                return true;
+        }
         return false;
     }
 
