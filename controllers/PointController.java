@@ -35,25 +35,10 @@ public class PointController extends PieceController{
             else {
                 targetCoordinate = "" + currentCoordinate.charAt(0) + (Character.getNumericValue(currentCoordinate.charAt(1))-i);
             }
-            if (isMoveValid(targetCoordinate)) {
+            if (isMoveValid(targetCoordinate, pieces, point)) {
                 point.addToPossibleMovesList(targetCoordinate);
             }
         }
-    }
-
-    private boolean isMoveValid(String targetCoordinate) {
-        // check if on the board
-        if (targetCoordinate.charAt(1) >= '1' && targetCoordinate.charAt(1) <= '6') {
-            // check is there any obstacles
-            if (pieces.isOccupied(targetCoordinate)) {
-                // check if having different color
-                if (!point.getColor().equals(pieces.getPiece(targetCoordinate).getColor()))
-                    return true;
-            }
-            else
-                return true;
-        }
-        return false;
     }
 
 }

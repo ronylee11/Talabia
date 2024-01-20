@@ -35,6 +35,5 @@ public class SunController extends PieceController{
             }
         }
     }
-
     
 }

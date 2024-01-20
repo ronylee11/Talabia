@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import models.Board;
+import models.Game;
 import models.Piece;
 import controllers.BoardController;
 import controllers.PieceController;
@@ -68,6 +69,7 @@ public class BoardView extends JFrame implements ActionListener {
                 controller.addIcon(previousCoordinate, coordinate);
                 Piece.clearPossibleList();
                 coordinate = null;
+                Game.switchPlayer();
             }
             else {
                 Piece.clearPossibleList();

@@ -30,26 +30,10 @@ public class HourglassController extends PieceController{
             char newColumn = (char) (currentCoordinate.charAt(0) + columns[i]);
             int newRow = (Character.getNumericValue(currentCoordinate.charAt(1)) + rows[i]);
             targetCoordinate = "" + newColumn + newRow;
-            if (isMoveValid(targetCoordinate)) {
+            if (isMoveValid(targetCoordinate, pieces, hourglass)) {
                 hourglass.addToPossibleMovesList(targetCoordinate);
             }
         }
-    }
-
-    private boolean isMoveValid(String targetCoordinate) {
-        // check if on the board
-        if (targetCoordinate.charAt(1) >= '1' && targetCoordinate.charAt(1) <= '6'
-            && targetCoordinate.charAt(0) >= 'a' && targetCoordinate.charAt(0) <= 'g') {
-            // check is there any obstacles
-            if (pieces.isOccupied(targetCoordinate)) {
-                // check if having different color
-                if (!hourglass.getColor().equals(pieces.getPiece(targetCoordinate).getColor()))
-                    return true;
-            }
-            else
-                return true;
-        }
-        return false;
     }
 
 }

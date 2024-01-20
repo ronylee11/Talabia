@@ -2,16 +2,22 @@ package models;
 
 public class Player {
     private int score;
+    private PieceColor color;
 
-    Player(int score) {
-        this.score = score;
+    Player(PieceColor c) {
+        this.score = 0;
+        color = c;
     }
 
-    int getPlayerScore() {
+    public int getPlayerScore() {
         return score;
     }
 
-    void setPlayerScore(int score) {
+    public void setPlayerScore(int score) {
         this.score = score;
+    }
+
+    public PieceColor getPlayerColor() {
+        return color;
     }
 }
