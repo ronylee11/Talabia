@@ -3,7 +3,7 @@ package models;
 import java.text.MessageFormat;
 
 import controllers.PieceController;
-import controllers.SunController;
+import controllers.PlusController;
 import views.PieceView;
 
 public class Plus extends Piece {
@@ -14,7 +14,7 @@ public class Plus extends Piece {
 
     @Override
     public PieceController createController(Piece piece, PieceView view) {
-        return new SunController(piece, view);
+        return new PlusController(piece, view);
     }
     
     @Override

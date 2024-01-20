@@ -3,45 +3,51 @@ package controllers;
 import models.Piece;
 import models.PieceCoordinate;
 import models.Plus;
-import views.BoardView;
 import views.PieceView;
 
 public class PlusController extends PieceController {
     private Plus plus;
     private PieceCoordinate pieces;
-    private BoardView boardView;  // Reference to the BoardView
 
-    public PlusController(Piece plus, PieceView view, BoardView boardView) {
+    public PlusController(Piece plus, PieceView view) {
         super(plus, view);
         this.plus = (Plus) plus;
         this.pieces = PieceCoordinate.getPieceCoordinate();
-        this.boardView = boardView;  // Initialize the reference to the BoardView
-
         checkPossibleMove();
     }
 
     @Override
     public void checkPossibleMove() {
         String currentCoordinate = plus.getCoordinate();
-        int currentRow = currentCoordinate.charAt(0) - 'A';
-        int currentCol = Integer.parseInt(currentCoordinate.substring(1));
+        int currentRow = Integer.parseInt(currentCoordinate.substring(1));
+        char currentCol = currentCoordinate.charAt(0);
 
         // Clear the possible moves list before recalculating
         plus.clearPossibleMovesList();
 
         // Move horizontally
-        for (int col = 1; col <= 7; col++) {
+        for (char col = 'a'; col <= 'g'; col++) {
             if (col != currentCol) {
-                plus.addToPossibleMovesList((char) ('A' + currentRow) + Integer.toString(col));
+                String newCoordinate = col + Integer.toString(currentRow);
+                if (isMoveValid(newCoordinate)) {
+                    plus.addToPossibleMovesList(newCoordinate);
+                }
             }
         }
 
         // Move vertically
-        for (char row = 'A'; row <= 'F'; row++) {
-            if (row != currentCoordinate.charAt(0)) {
-                plus.addToPossibleMovesList(row + Integer.toString(currentCol));
+        for (int row = 1; row <= 6; row++) {
+            if (row != currentRow) {
+                String newCoordinate = currentCol + Integer.toString(row);
+                if (isMoveValid(newCoordinate)) {
+                    plus.addToPossibleMovesList(newCoordinate);
+                }
             }
         }
     }
-}
 
+    // Check if the move is valid (no piece at the target coordinate)
+    private boolean isMoveValid(String targetCoordinate) {
+        return !pieces.isOccupied(targetCoordinate);
+    }
+}
