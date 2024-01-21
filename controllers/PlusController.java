@@ -13,7 +13,6 @@ public class PlusController extends PieceController {
         super(plus, view);
         this.plus = (Plus) plus;
         this.pieces = PieceCoordinate.getPieceCoordinate();
-        checkPossibleMove();
     }
 
     @Override
@@ -26,35 +25,66 @@ public class PlusController extends PieceController {
         // Clear the possible moves list before recalculating
         plus.clearPossibleMovesList();
 
-        // Move horizontally
-        for (char col = 'a'; col <= 'g'; col++) {
-            if (col != currentCol) {
-                String newCoordinate = col + Integer.toString(currentRow);
-                if (isMoveValid(newCoordinate)) {
-                    plus.addToPossibleMovesList(newCoordinate);
-                }
-            }
-        }
+        // move left (-)
+        checkMoveInLeft(currentCol, currentRow);
+        plus.setBlock(false);
 
-        // Move vertically
-        for (int row = 1; row <= 6; row++) {
-            if (row != currentRow) {
-                String newCoordinate = currentCol + Integer.toString(row);
-                if (isMoveValid(newCoordinate)) {
-                    plus.addToPossibleMovesList(newCoordinate);
-                }
+        // move right (+)
+        checkMoveInRight(currentCol, currentRow);
+        plus.setBlock(false);
+
+        // move down (-)
+        checkMoveInDown(currentCol, currentRow);
+        plus.setBlock(false);
+
+        // move up (+)
+        checkMoveInUp(currentCol, currentRow);
+    }
+
+    private void checkMoveInLeft(char currentCol, int currentRow) {
+        for (int left = 1; left < 7; left++) {
+            char col = (char) (currentCol - left);
+            String newCoordinate = col + Integer.toString(currentRow);
+            if (isMoveValid(newCoordinate, pieces, plus)) {
+                plus.addToPossibleMovesList(newCoordinate);
             }
+            if (plus.isBlocking())
+                left = 7;
         }
     }
 
-    // Check if the move is valid (no piece at the target coordinate)
-    private boolean isMoveValid(String targetCoordinate) {
-        if (!pieces.isOccupied(targetCoordinate)) {
-            return true;
-        } else {
-            plus.setBlock(true);
-            Piece targetPiece = pieces.getPiece(targetCoordinate);
-            return targetPiece.getColor() != plus.getColor();
+    private void checkMoveInRight(char currentCol, int currentRow) {
+        for (int right = 1; right < 7; right++) {
+            char col = (char) (currentCol + right);
+            String newCoordinate = col + Integer.toString(currentRow);
+            if (isMoveValid(newCoordinate, pieces, plus)) {
+                plus.addToPossibleMovesList(newCoordinate);
+            }
+            if (plus.isBlocking())
+                right = 7;
         }
     }
+
+    private void checkMoveInDown(char currentCol, int currentRow) {
+        for (int down = 1; down < 6; down++) {
+            String newCoordinate = currentCol + Integer.toString(currentRow-down);
+            if (isMoveValid(newCoordinate, pieces, plus)) {
+                plus.addToPossibleMovesList(newCoordinate);
+            }
+            if (plus.isBlocking())
+                down = 6;
+        }
+    }
+
+    private void checkMoveInUp(char currentCol, int currentRow) {
+        for (int up = 1; up < 6; up++) {
+            String newCoordinate = currentCol + Integer.toString(currentRow+up);
+            if (isMoveValid(newCoordinate, pieces, plus)) {
+                plus.addToPossibleMovesList(newCoordinate);
+            }
+            if (plus.isBlocking())
+                up = 6;
+        }
+    }
+
 }
