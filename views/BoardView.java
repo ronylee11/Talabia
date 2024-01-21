@@ -54,7 +54,7 @@ public class BoardView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        controller.resetHint();
+
         PieceView btn = (PieceView) e.getSource();
         String coordinate = btn.getCoordinate();
         System.out.println("Button clicked! This button is " + coordinate);
@@ -62,7 +62,7 @@ public class BoardView extends JFrame implements ActionListener {
         PieceController pieceController;
 
         if (previousCoordinate != null) {
-            pieceController = isControllerValid(previousCoordinate, btn);
+            pieceController = getController(previousCoordinate, btn);
 
             if (Piece.getPossibleMovesList().contains(coordinate)) {
                 pieceController.movePiece(previousCoordinate, coordinate);
@@ -70,21 +70,23 @@ public class BoardView extends JFrame implements ActionListener {
                 Piece.clearPossibleList();
                 coordinate = null;
                 Game.switchPlayer();
+                controller.flipBoard();
             }
             else {
                 Piece.clearPossibleList();
-                isControllerValid(coordinate, btn);
+                pieceController = getController(coordinate, btn);
             }
         }
         else {
             Piece.clearPossibleList();
-            isControllerValid(coordinate, btn);
+            pieceController = getController(coordinate, btn);
         }
+        controller.resetIcon();
         controller.resetHint();
         previousCoordinate = coordinate;
     }
 
-    private PieceController isControllerValid(String coordinate, PieceView btn) {
+    private PieceController getController(String coordinate, PieceView btn) {
         PieceController pieceController = PieceControllerFactory.getController(coordinate, btn);
         if (pieceController != null)
             pieceController.checkPossibleMove();

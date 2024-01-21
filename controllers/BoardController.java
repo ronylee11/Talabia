@@ -60,13 +60,43 @@ public class BoardController {
     // change icon after piece move
     public void addIcon(String previousCoordinate, String newCoordinate) {
         for (PieceView btn : buttons) {
-            if (previousCoordinate.equals(btn.getCoordinate())) {
+            String btnCoordinate = btn.getCoordinate();
+            if (previousCoordinate.equals(btnCoordinate)) {
                 btn.setIcon(null);
             }
-            else if (newCoordinate.equals(btn.getCoordinate())) {
+            else if (newCoordinate.equals(btnCoordinate)) {
                 String url = PieceCoordinate.getPieceCoordinate().getPiece(newCoordinate).getImageUrl();
                 btn.setIcon(new ImageIcon(url));
             }
+        }
+    }
+
+    public void resetIcon() {
+        PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
+        for (PieceView btn : buttons) {
+            String btnCoordinate = btn.getCoordinate();
+            if (pc.isOccupied(btnCoordinate)) {
+                String url = pc.getPiece(btnCoordinate).getImageUrl();
+                btn.setIcon(new ImageIcon(url));
+            }
+            else
+                btn.setIcon(null);
+        }
+    }
+
+    public void flipBoard() {
+        PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
+        pc.changeCoordinate();
+        for (PieceView btn : buttons) {
+            String btnCoordinate = btn.getCoordinate();
+            if (pc.isOccupied(btnCoordinate)) {
+                Piece piece = pc.getPiece(btnCoordinate);
+                piece.switchUrl();    
+                String url = piece.getImageUrl();
+                btn.setIcon(new ImageIcon(url));
+            }
+            else
+                btn.setIcon(null);
         }
     }
     

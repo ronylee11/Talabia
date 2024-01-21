@@ -12,8 +12,6 @@ public class HourglassController extends PieceController{
         super(hourglass, view);
         this.hourglass = hourglass;
         this.pieces = PieceCoordinate.getPieceCoordinate();
-
-        checkPossibleMove();
     }
 
     // check all the possible move

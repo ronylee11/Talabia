@@ -1,17 +1,16 @@
 package models;
 
-import java.text.MessageFormat;
-
 import controllers.PieceController;
 import controllers.PointController;
 import views.PieceView;
 
 public class Point extends Piece {
     private boolean forward = true;
+    private String imageUrl2; // in opposite direction
+    private boolean switchDone = false;
 
     public Point(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
-        
     }
 
     @Override
@@ -31,9 +30,22 @@ public class Point extends Piece {
         forward = false;
     }
 
+    public void setImageUrl2(String url) {
+        imageUrl2 = url;
+    }
+
+    public boolean isSwitchDone() {
+        return switchDone;
+    }
+
+    public void setSwitchDone(boolean b) {
+        switchDone = b;
+    }
+
     @Override
-    public void movePiece(String newCoordinate) {
-        System.out.println(MessageFormat.format("Time piece moved to ({0})", newCoordinate));
-        super.setCoordinate(newCoordinate);
+    public void switchUrl() {
+        String temp = getImageUrl();
+        setImageUrl(imageUrl2);
+        imageUrl2 = temp;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 public class PieceCoordinate {
     // private char column;    // a to g
     // private int row;        // 1 to 6
-    public static PieceCoordinate pieceCoordinate;
+    private static PieceCoordinate pieceCoordinate;
     private Map<String, Piece> pieceCoordinateMap;
 
     private PieceCoordinate () {
@@ -35,4 +35,20 @@ public class PieceCoordinate {
     public void removePiece(String coordinate) {
         pieceCoordinateMap.remove(coordinate);
     }
+
+    // change while flippping board
+    public void changeCoordinate() {
+        Map<String, Piece> tempMap = new HashMap<>();
+
+        // change coordinate, put in temp map
+        pieceCoordinateMap.forEach((key, value) -> {
+            String newKey = CoordinateConverter.convertCoordinate(key);
+            value.setCoordinate(newKey);
+            tempMap.put(newKey, value);
+        });
+
+        pieceCoordinateMap.clear();
+        pieceCoordinateMap.putAll(tempMap);
+    }
+
 }

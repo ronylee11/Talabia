@@ -11,6 +11,7 @@ public abstract class Piece {
     private String coordinate;
     private PieceColor color;
     private static Set<String> possibleMoves;
+    private boolean block = false;
 
     public Piece(String imageUrl, String coordinate, PieceColor color) {
         this.imageUrl = imageUrl;
@@ -43,7 +44,13 @@ public abstract class Piece {
         this.coordinate = coordinate;
     }
 
-    public abstract void movePiece(String newCoordinate);
+    public boolean isBlocking() {
+        return block;
+    }
+
+    public void setBlock(Boolean b) {
+        block = b;
+    }
 
     public static Set<String> getPossibleMovesList() {
         return possibleMoves;
@@ -60,4 +67,6 @@ public abstract class Piece {
     public void clearPossibleMovesList() {
         possibleMoves.clear();
     }
+
+    public void switchUrl(){};
 }

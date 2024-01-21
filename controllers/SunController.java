@@ -12,8 +12,6 @@ public class SunController extends PieceController{
         super(sun, view);
         this.sun = sun;
         this.pieces = PieceCoordinate.getPieceCoordinate();
-
-        checkPossibleMove();
     }
 
     // check all the possible move

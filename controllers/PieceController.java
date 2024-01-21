@@ -26,11 +26,13 @@ public class PieceController {
             if (view.getCoordinate().equals(pieceLocations[i])) {
                 if (view.getCoordinate().charAt(1) == '2') {
                     Point point = new Point("assets/arrow-y.png", view.getCoordinate(), PieceColor.YELLOW);
+                    point.setImageUrl2("assets/arrow-y2.png");
                     view.setIcon(new ImageIcon("assets/arrow-y.png"));
                     pieceCoordinate.placePiece(view.getCoordinate(), point);
                     break;
                 } else if ((view.getCoordinate().charAt(1) == '5')){
                     Point point = new Point("assets/arrow-b.png", view.getCoordinate(), PieceColor.BLUE);
+                    point.setImageUrl2("assets/arrow-b2.png");
                     view.setIcon(new ImageIcon("assets/arrow-b.png"));
                     pieceCoordinate.placePiece(view.getCoordinate(), point);
                     break;
@@ -107,13 +109,14 @@ public class PieceController {
     }
 
     public void movePiece(String currentCoordinate, String newCoordinate) {
-        Piece piece = PieceCoordinate.getPieceCoordinate().getPiece(currentCoordinate);
-        PieceCoordinate.getPieceCoordinate().removePiece(currentCoordinate);
-        if (PieceCoordinate.getPieceCoordinate().getPiece(newCoordinate) != null) {
-            PieceCoordinate.getPieceCoordinate().removePiece(newCoordinate);
+        PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
+        Piece piece = pc.getPiece(currentCoordinate);
+        pc.removePiece(currentCoordinate);
+        if (pc.getPiece(newCoordinate) != null) {
+            pc.removePiece(newCoordinate);
         }
         piece.setCoordinate(newCoordinate);
-        PieceCoordinate.getPieceCoordinate().placePiece(newCoordinate, piece);
+        pc.placePiece(newCoordinate, piece);
     }
 
     public boolean isMoveValid(String targetCoordinate, PieceCoordinate piecesCoordinate, Piece piece) {
@@ -124,6 +127,7 @@ public class PieceController {
                 && targetCoordinate.charAt(0) >= 'a' && targetCoordinate.charAt(0) <= 'g') {
                 // check is there any obstacles
                 if (piecesCoordinate.isOccupied(targetCoordinate)) {
+                    piece.setBlock(true);
                     // check if having different color
                     if (!piece.getColor().equals(piecesCoordinate.getPiece(targetCoordinate).getColor()))
                         return true;
