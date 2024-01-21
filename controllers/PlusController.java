@@ -18,13 +18,14 @@ public class PlusController extends PieceController {
 
     @Override
     public void checkPossibleMove() {
+        plus.setBlock(false);
         String currentCoordinate = plus.getCoordinate();
         int currentRow = Integer.parseInt(currentCoordinate.substring(1));
         char currentCol = currentCoordinate.charAt(0);
-
+    
         // Clear the possible moves list before recalculating
         plus.clearPossibleMovesList();
-
+    
         // Move horizontally
         for (char col = 'a'; col <= 'g'; col++) {
             if (col != currentCol) {
@@ -34,7 +35,7 @@ public class PlusController extends PieceController {
                 }
             }
         }
-
+    
         // Move vertically
         for (int row = 1; row <= 6; row++) {
             if (row != currentRow) {
@@ -45,9 +46,19 @@ public class PlusController extends PieceController {
             }
         }
     }
-
+    
     // Check if the move is valid (no piece at the target coordinate)
     private boolean isMoveValid(String targetCoordinate) {
-        return !pieces.isOccupied(targetCoordinate);
+        if (plus.isBlocking()) {
+            return false; // Plus is blocking, move is invalid
+        }
+    
+        if (!pieces.isOccupied(targetCoordinate)) {
+            return true;
+        } else {
+            plus.setBlock(true);
+            Piece targetPiece = pieces.getPiece(targetCoordinate);
+            return targetPiece.getColor() != plus.getColor();
+        }
     }
 }
