@@ -1,9 +1,11 @@
 package views;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 import models.*;
 import controllers.PieceController;
@@ -43,7 +45,8 @@ public class PieceView extends JButton {
         controller.generatePieces();
 
         setPreferredSize(new Dimension(50, 50));
-        setBorderPainted(false);
+        setOpaque(true);
+        setBorderPainted(true);
         setFocusPainted(false);
         setContentAreaFilled(false);
     }
@@ -59,4 +62,23 @@ public class PieceView extends JButton {
     public int pieceSpawned() {
         return pieceSpawned;
     }
+
+    // reset hint border
+    public void setHint(boolean hint) {
+        if (hint)
+            setBorder(new LineBorder(Color.GREEN, 6));
+        else
+            setBorder(null);
+    }
+
+    // update icon on the button
+    public void resetIcon() {
+        Piece piece = PieceCoordinate.getPieceCoordinate().getPiece(boardCoordinate);
+        if (piece != null)
+            setIcon(new ImageIcon(piece.getImageUrl()));
+        else
+            setIcon(null);
+    }
+
+    
 }

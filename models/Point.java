@@ -1,9 +1,5 @@
 package models;
 
-import controllers.PieceController;
-import controllers.PointController;
-import views.PieceView;
-
 public class Point extends Piece {
     private boolean forward = true;
     private String imageUrl2; // in opposite direction
@@ -13,20 +9,15 @@ public class Point extends Piece {
         super(imageUrl, coordinate, color);
     }
 
-    @Override
-    public PieceController createController(Piece piece, PieceView view) {
-        return new PointController(piece, view);
-    }
-
-    public boolean isForward() {
+    private boolean isForward() {
         return forward;
     }
 
-    public void setToForward() {
+    private void setToForward() {
         forward = true;
     }
 
-    public void setToBackward() {
+    private void setToBackward() {
         forward = false;
     }
 
@@ -34,11 +25,11 @@ public class Point extends Piece {
         imageUrl2 = url;
     }
 
-    public boolean isSwitchDone() {
+    private boolean isSwitchDone() {
         return switchDone;
     }
 
-    public void setSwitchDone(boolean b) {
+    private void setSwitchDone(boolean b) {
         switchDone = b;
     }
 
@@ -47,5 +38,54 @@ public class Point extends Piece {
         String temp = getImageUrl();
         setImageUrl(imageUrl2);
         imageUrl2 = temp;
+    }
+
+    // check all the possible move
+    @Override
+    public void checkPossibleMove() {
+        clearPossibleMovesList();
+        setBlock(false); 
+        String currentCoordinate = getCoordinate();
+
+        checkReachEnd(currentCoordinate);
+
+        String targetCoordinate;
+        for (int i = 1; i < 3; i++) {
+            char char1 = currentCoordinate.charAt(0);
+            int char2 = Character.getNumericValue(currentCoordinate.charAt(1));
+            if (isForward()) {
+                targetCoordinate = "" + char1 + (char2 + i);
+            }
+            else {
+                targetCoordinate = "" + char1 + (char2 - i);
+            }
+
+            if (isMoveValid(targetCoordinate, this)) {
+                addToPossibleMovesList(targetCoordinate);
+            }
+            
+            // stop when have obstacles
+            if (isBlocking())
+                i = 3;
+        }
+    }
+
+    // change direction when reach end
+    private void checkReachEnd(String coordinate) {
+        if (Game.getCurrentColor().equals(getColor())) {
+            if (coordinate.charAt(1) == '6' || coordinate.charAt(1) == '1') { 
+                if (!isSwitchDone()) {
+                    switchUrl();
+                    setSwitchDone(true);
+                    if (coordinate.charAt(1) == '6')
+                        setToBackward();
+                    else 
+                        setToForward();
+                } 
+            }
+            else {
+                setSwitchDone(false);
+            }
+        }
     }
 }

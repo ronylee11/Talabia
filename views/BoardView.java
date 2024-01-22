@@ -1,22 +1,16 @@
 package views;
 
 import java.awt.*;
-import java.awt.event.*;
 
 import javax.swing.*;
 
 import models.Board;
-import models.Game;
-import models.Piece;
 import controllers.BoardController;
-import controllers.PieceController;
-import controllers.PieceControllerFactory;
 
 @SuppressWarnings("serial")
-public class BoardView extends JFrame implements ActionListener {
+public class BoardView extends JFrame {
     private Board model;
     private BoardController controller;
-    private String previousCoordinate;
 
     // Board
     // 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6',
@@ -52,45 +46,5 @@ public class BoardView extends JFrame implements ActionListener {
         super.pack();
         super.setSize(model.getDimensionX(), model.getDimensionY());
     }
-
-    public void actionPerformed(ActionEvent e) {
-
-        PieceView btn = (PieceView) e.getSource();
-        String coordinate = btn.getCoordinate();
-        System.out.println("Button clicked! This button is " + coordinate);
-
-        PieceController pieceController;
-
-        if (previousCoordinate != null) {
-            pieceController = getController(previousCoordinate, btn);
-
-            if (Piece.getPossibleMovesList().contains(coordinate)) {
-                pieceController.movePiece(previousCoordinate, coordinate);
-                controller.addIcon(previousCoordinate, coordinate);
-                Piece.clearPossibleList();
-                coordinate = null;
-                Game.switchPlayer();
-                controller.flipBoard();
-            }
-            else {
-                Piece.clearPossibleList();
-                pieceController = getController(coordinate, btn);
-            }
-        }
-        else {
-            Piece.clearPossibleList();
-            pieceController = getController(coordinate, btn);
-        }
-        controller.resetIcon();
-        controller.resetHint();
-        previousCoordinate = coordinate;
-    }
-
-    private PieceController getController(String coordinate, PieceView btn) {
-        PieceController pieceController = PieceControllerFactory.getController(coordinate, btn);
-        if (pieceController != null)
-            pieceController.checkPossibleMove();
-
-        return pieceController;
-    }
+    
 }

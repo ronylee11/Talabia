@@ -36,6 +36,10 @@ public class PieceCoordinate {
         pieceCoordinateMap.remove(coordinate);
     }
 
+    public Map<String, Piece> getCoordinateMap() {
+        return pieceCoordinateMap;
+    }
+
     // change while flippping board
     public void changeCoordinate() {
         Map<String, Piece> tempMap = new HashMap<>();

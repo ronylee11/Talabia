@@ -1,20 +1,24 @@
 package controllers;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.JPanel;
 
 import models.Board;
+import models.Game;
 import models.Piece;
 import models.PieceCoordinate;
 import views.BoardView;
 import views.PieceView;
 
-public class BoardController {
+public class BoardController implements ActionListener{
     private Board model;
     private BoardView view;
     private PieceView[] buttons = new PieceView[42];
+    private String previousCoordinate;
+    private Piece piece;
 
     public BoardController(Board b, BoardView bv) {
         this.model = b;
@@ -40,64 +44,58 @@ public class BoardController {
                 button.setBackground(Color.BLACK);
             button.setOpaque(true);
             button.setBorderPainted(true);
-            button.addActionListener(view);
+            button.addActionListener(this);
             p.add(button);
         }
     }
 
-    //
-    public void resetHint() {
-        for (PieceView btn : buttons) {
-            if (Piece.getPossibleMovesList().contains(btn.getCoordinate())) {
-                btn.setBorder(new LineBorder(Color.GREEN, 6));
-            }
-            else {
-                btn.setBorder(null);
-            }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        PieceView btn = (PieceView) e.getSource();
+        String coordinate = btn.getCoordinate();
+        System.out.println("Button clicked! This button is " + coordinate);
+
+        if (previousCoordinate != null) {
+            if (isPieceMove(coordinate))
+                coordinate = null;
         }
+    
+        handlePossibleMoveCheck(coordinate);
+
+        setHintPiece();
+        updateView();
     }
 
-    // change icon after piece move
-    public void addIcon(String previousCoordinate, String newCoordinate) {
-        for (PieceView btn : buttons) {
-            String btnCoordinate = btn.getCoordinate();
-            if (previousCoordinate.equals(btnCoordinate)) {
-                btn.setIcon(null);
-            }
-            else if (newCoordinate.equals(btnCoordinate)) {
-                String url = PieceCoordinate.getPieceCoordinate().getPiece(newCoordinate).getImageUrl();
-                btn.setIcon(new ImageIcon(url));
-            }
+    private boolean isPieceMove(String coordinate) {
+        piece = PieceCoordinate.getPieceCoordinate().getPiece(previousCoordinate);
+        if (piece != null && piece.getPossibleMovesList().contains(coordinate)) {
+            piece.movePiece(previousCoordinate, coordinate);
+            Game.switchPlayer();
+            model.flipBoard();
+            return true;
         }
+        return false;
     }
 
-    public void resetIcon() {
-        PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
-        for (PieceView btn : buttons) {
-            String btnCoordinate = btn.getCoordinate();
-            if (pc.isOccupied(btnCoordinate)) {
-                String url = pc.getPiece(btnCoordinate).getImageUrl();
-                btn.setIcon(new ImageIcon(url));
-            }
-            else
-                btn.setIcon(null);
-        }
-    }
-
-    public void flipBoard() {
-        PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
-        pc.changeCoordinate();
-        for (PieceView btn : buttons) {
-            String btnCoordinate = btn.getCoordinate();
-            if (pc.isOccupied(btnCoordinate)) {
-                Piece piece = pc.getPiece(btnCoordinate);
-                piece.switchUrl();    
-                String url = piece.getImageUrl();
-                btn.setIcon(new ImageIcon(url));
-            }
-            else
-                btn.setIcon(null);
-        }
+    private void handlePossibleMoveCheck(String coordinate) {
+        piece = PieceCoordinate.getPieceCoordinate().getPiece(coordinate);
+        if (piece != null)
+            piece.checkPossibleMove();
+        previousCoordinate = coordinate;
     }
     
+    private void setHintPiece() {
+        for (PieceView btn : buttons) {
+            if (piece != null && piece.getPossibleMovesList().contains(btn.getCoordinate()))
+                btn.setHint(true);
+            else
+                btn.setHint(false);
+        }
+    }
+
+    private void updateView() {
+        for (PieceView btn : buttons) {
+            btn.resetIcon();
+        }
+    }
 }
