@@ -22,8 +22,13 @@ public class BoardView extends JFrame {
 
     public BoardView(Board model) {
         super("Talabia Chess");
-        JPanel p = new JPanel();
-        add(p);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        JPanel boardPanel = new JPanel();
+        boardPanel.setLayout(new GridLayout(6, 7));
+        mainPanel.add(boardPanel, BorderLayout.CENTER);
 
         this.model = model;
         controller = new BoardController(model, this);
@@ -31,10 +36,26 @@ public class BoardView extends JFrame {
         // update Board to specified dimension
         controller.updateBoard(); 
         // generate board notations
-        controller.generateBoardNotations(p);
+        controller.generateBoardNotations(boardPanel);
 
-        p.setLayout(new GridLayout(6, 7));
         setSize(model.getDimensionX(), model.getDimensionY());
+
+        // Create Back buttons panel
+        JPanel buttonsPanel = new JPanel();
+        JButton backButton = new JButton("Back");
+
+        backButton.addActionListener(e -> {
+            dispose(); // Close the current board window
+            new MenuView(); // Open the menu window
+        });
+           
+              
+        buttonsPanel.add(backButton);
+
+        mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
+
+        add(mainPanel);
+        
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

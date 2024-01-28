@@ -32,8 +32,8 @@ public class Game {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 - 1,  1 - 0
         currentPlayer = players[currentPlayerIndex];
 
+        PrintRound.printCurrentRound();
+        PrintTurn.printCurrentPlayerTurn();
         RoundCount.RoundCountCalculate();
     }
-
-
 }

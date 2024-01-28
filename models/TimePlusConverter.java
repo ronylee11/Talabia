@@ -10,7 +10,7 @@ public class TimePlusConverter {
     private static Set<String> replacedCoordinates = new HashSet<>();
 
     public static void replaceTimeAndPlus() {
-        replacedCoordinates.clear(); // Clear the set at the beginning of each replacement
+        replacedCoordinates.clear(); 
         replacePieces(PieceType.TIME, PieceType.PLUS);
         replacePieces(PieceType.PLUS, PieceType.TIME);
         isTimeRound = !isTimeRound;
@@ -20,7 +20,6 @@ public class TimePlusConverter {
         PieceCoordinate pieceCoordinate = PieceCoordinate.getPieceCoordinate();
         Map<String, Piece> coordinateMap = pieceCoordinate.getCoordinateMap();
 
-        // Create a copy of the keys to avoid ConcurrentModificationException
         Set<String> keysCopy = new HashSet<>(coordinateMap.keySet());
 
         for (String coordinate : keysCopy) {

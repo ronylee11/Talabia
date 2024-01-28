@@ -12,6 +12,7 @@ import controllers.PieceController;
 
 @SuppressWarnings("serial")
 public class PieceView extends JButton {
+    private static final int MAX_PIECE_SPAWNED = 42;
     static private int pieceSpawned = 0; // max: 42 // assign coordinates on Board from a6~g6, a5~g5.. to 1~14, 29~42
     private String[] notationSequence = generateNotationSequence();
     private String boardCoordinate = "";
@@ -36,6 +37,16 @@ public class PieceView extends JButton {
         super();
         // add coordinate
         pieceSpawned++;
+        if (pieceSpawned <= MAX_PIECE_SPAWNED) {
+            boardCoordinate = notationSequence[pieceSpawned - 1];
+            controller = new PieceController(model, this);
+            controller.generatePieces();
+        } else {
+            // Handle the case where pieceSpawned exceeds the maximum
+            // For example, you might want to reset it to 1 or handle it differently.
+            pieceSpawned = 1;
+        }
+        
         boardCoordinate = notationSequence[pieceSpawned - 1];
         // connect PieceController
         controller = new PieceController(model, this);
