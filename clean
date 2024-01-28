@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm models/*.class
+rm views/*.class
+rm controllers/*.class
