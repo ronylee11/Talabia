@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.*;
-
 import javax.swing.*;
 
 import models.Board;
@@ -67,5 +66,4 @@ public class BoardView extends JFrame {
         super.pack();
         super.setSize(model.getDimensionX(), model.getDimensionY());
     }
-    
 }

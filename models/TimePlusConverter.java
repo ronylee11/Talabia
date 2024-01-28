@@ -33,7 +33,6 @@ public class TimePlusConverter {
                 Piece replacementPiece = createReplacementPiece(piece, toType, coordinate);
                 pieceCoordinate.placePiece(coordinate, replacementPiece);
 
-                // Mark the coordinate as replaced to avoid double replacement
                 replacedCoordinates.add(coordinate);
             }
         }
