@@ -3,9 +3,6 @@ package models;
 import java.util.HashSet;
 import java.util.Set;
 
-import controllers.PieceController;
-import views.PieceView;
-
 public abstract class Piece {
     private String imageUrl;
     private String coordinate;
@@ -20,10 +17,6 @@ public abstract class Piece {
         this.color = color;
         this.pieces = PieceCoordinate.getPieceCoordinate();
         possibleMoves = new HashSet<>();
-    }
-
-    public PieceController createController(Piece piece, PieceView view) {
-        return new PieceController(piece, view);
     }
 
     public String getImageUrl() {
@@ -56,10 +49,6 @@ public abstract class Piece {
 
     public Set<String> getPossibleMovesList() {
         return possibleMoves;
-    }
-
-    public void clearPossibleList () {
-        possibleMoves.clear();
     }
 
     public void addToPossibleMovesList(String coordinate) {

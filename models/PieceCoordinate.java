@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PieceCoordinate {
-    // private char column;    // a to g
-    // private int row;        // 1 to 6
     private static PieceCoordinate pieceCoordinate;
     private Map<String, Piece> pieceCoordinateMap;
 
