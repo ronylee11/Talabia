@@ -3,6 +3,7 @@ package models;
 public class Sun extends Piece {
     public Sun(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
+        this.setName("Sun");
     }
 
     // check all the possible move

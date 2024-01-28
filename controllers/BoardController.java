@@ -69,6 +69,21 @@ public class BoardController implements ActionListener{
     private boolean isPieceMove(String coordinate) {
         piece = PieceCoordinate.getPieceCoordinate().getPiece(previousCoordinate);
         if (piece != null && piece.getPossibleMovesList().contains(coordinate)) {
+            // if coordinate contains piece, print "piece captured"
+            // if coordinate does not contain piece, print "piece moved"
+            if (PieceCoordinate.getPieceCoordinate().getPiece(coordinate) != null) {
+                // if captured piece is Sun, print "Game Over"
+                if (PieceCoordinate.getPieceCoordinate().getPiece(coordinate).getName().equals("Sun")) {
+                    System.out.println("Game Over!");
+                    System.exit(0);
+                }
+                System.out.println("Piece captured!");
+            }
+            else {
+                System.out.println("Piece moved!");
+            }
+
+
             piece.movePiece(previousCoordinate, coordinate);
             Game.switchPlayer();
             model.flipBoard();

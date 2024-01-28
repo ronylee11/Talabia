@@ -7,6 +7,7 @@ public class Point extends Piece {
 
     public Point(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
+        this.setName("Point");
     }
 
     private boolean isForward() {

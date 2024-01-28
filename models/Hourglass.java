@@ -4,6 +4,7 @@ public class Hourglass extends Piece {
 
     public Hourglass(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
+        this.setName("Hourglass");
     }
 
     // check all the possible move

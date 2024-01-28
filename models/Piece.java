@@ -10,6 +10,7 @@ public abstract class Piece {
     private Set<String> possibleMoves;
     private PieceCoordinate pieces;
     private boolean block = false;
+    private String name = "Piece";
 
     public Piece(String imageUrl, String coordinate, PieceColor color) {
         this.imageUrl = imageUrl;
@@ -93,5 +94,13 @@ public abstract class Piece {
     }
 
     public void checkPossibleMove() {};
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
     
 }

@@ -4,6 +4,7 @@ public class Plus extends Piece {
 
     public Plus(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);
+        this.setName("Plus");
     }
 
     @Override
