@@ -111,6 +111,7 @@ public class BoardView extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "No file name entered.");
             }
+            updateRoundAndPlayerLabels();
         });
         buttonsPanel.add(saveButton);
         buttonsPanel.add(loadButton);
