@@ -4,12 +4,16 @@ import java.awt.*;
 import javax.swing.*;
 
 import models.Board;
+import models.Game;
 import controllers.BoardController;
 
 @SuppressWarnings("serial")
 public class BoardView extends JFrame {
     private Board model;
     private BoardController controller;
+
+    private JLabel roundLabel;
+    private JLabel playerTurnLabel;
 
     // Board
     // 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6',
@@ -54,13 +58,16 @@ public class BoardView extends JFrame {
         // add padding to the top and left of the letters panel
         lettersPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 10, 0));
 
-        // at North, show round number and which player turn
+         // at North, show round number and which player turn
         JPanel roundPanel = new JPanel();
         roundPanel.setLayout(new GridLayout(1, 2));
-        controller.generateRoundPanel(roundPanel);
+        roundLabel = new JLabel("Round: " + Game.getRound());
+        playerTurnLabel = new JLabel("Player: " + Game.getPlayerTurn());
+        roundPanel.add(roundLabel);
+        roundPanel.add(playerTurnLabel);
         mainPanel.add(roundPanel, BorderLayout.NORTH);
-        // add padding to the top, bottom and left of the round panel
-        roundPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 10, 0));
+         // add padding to the top, bottom and left of the round panel
+         roundPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 10, 0));
 
         // at East, show captured pieces if any, else, show nothing and add padding
         JPanel capturedPiecesPanel = new JPanel();
@@ -82,5 +89,10 @@ public class BoardView extends JFrame {
         super.repaint();
         super.pack();
         super.setSize(model.getDimensionX(), model.getDimensionY());
+    }
+
+    public void updateRoundAndPlayerLabels() {
+        roundLabel.setText("Round: " + Game.getRound());
+        playerTurnLabel.setText("Player: " + Game.getPlayerTurn());
     }
 }

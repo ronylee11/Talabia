@@ -6,15 +6,18 @@ public class Game {
     private static Player[] players;
     private static Player currentPlayer;
     private static int currentPlayerIndex = 0;
-    private static int roundCount = 0; //calculate number of round (each player play 1 time, round + 1)
+    private static int roundCount = 0; // calculate number of round (each player play 1 time, round + 1)
     private static int playCount = 0; // calculate number of time ( one player play 1 time, time + 1)
+
+    private static BoardView boardView;
 
     public Game() {
         players = new Player[2];
         createPlayer();
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
-        new BoardView(new Board(500, 500));
+        // Create a single instance of BoardView
+        boardView = new BoardView(new Board(500, 500));
     }
 
     public static Player getCurrentPlayer() {
@@ -51,9 +54,9 @@ public class Game {
         if (playCount % 2 == 0) { // if both players have played
             roundCount++; // 1 round has completed
         }
-        if (roundCount % 4 == 0) { // every 4 rounds,
+        if (roundCount % 2 == 0) { // every 2 rounds,
             TimePlusConverter.replaceTimeAndPlus(); // Replace Time and Plus every two rounds
-        }    
+        }
     }
 
     public static void switchPlayer() {
@@ -64,5 +67,8 @@ public class Game {
         RoundCountCalculate();
         printCurrentRound();
         printCurrentPlayerTurn();
+
+        // Update labels using the single instance of BoardView
+        boardView.updateRoundAndPlayerLabels();
     }
 }
