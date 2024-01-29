@@ -66,15 +66,18 @@ public class Game {
         playCount = count;
     }
 
+    //AU JI HIN
     public static void printCurrentRound() {
         System.out.println("Total play count: " + playCount);
         System.out.println("Current round: " + (roundCount + 1));
     }
 
+    //AU JI HIN
     public static void printCurrentPlayerTurn() {
         System.out.println("Current player's turn: " + Game.getCurrentPlayer().getPlayerColor());
     }
 
+    //AU JI HIN
     public static void RoundCountCalculate() {
         if (playCount % 2 == 0) { // if both players have played
             roundCount++; // 1 round has completed
