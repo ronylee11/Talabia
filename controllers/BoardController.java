@@ -53,7 +53,6 @@ public class BoardController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         PieceView btn = (PieceView) e.getSource();
         String coordinate = btn.getCoordinate();
-        System.out.println("Button clicked! This button is " + coordinate);
 
         if (previousCoordinate != null) {
             if (isPieceMove(coordinate))
