@@ -38,20 +38,24 @@ public class BoardView extends JFrame {
         controller.generateBoardNotations(boardPanel);
 
         setSize(model.getDimensionX(), model.getDimensionY());
+        // at West, create a column of numbers from 1 to 6 starting bottom
+        JPanel numbersPanel = new JPanel();
+        numbersPanel.setLayout(new GridLayout(6, 1));
+        controller.generateBoardNumbers(numbersPanel);
+        mainPanel.add(numbersPanel, BorderLayout.WEST);
+        // add padding to the left and right of the numbers panel
+        numbersPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
-        // Create Back buttons panel
-        JPanel buttonsPanel = new JPanel();
-        JButton backButton = new JButton("Back");
+        // at South, create a row of letters from a to g starting left
+        JPanel lettersPanel = new JPanel();
+        lettersPanel.setLayout(new GridLayout(1, 7));
+        controller.generateBoardLetters(lettersPanel);
+        mainPanel.add(lettersPanel, BorderLayout.SOUTH);
+        // add padding to the top and left of the letters panel
+        lettersPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 10, 0));
 
-        backButton.addActionListener(e -> {
-            dispose(); // Close the current board window
-            new MenuView(); // Open the menu window
-        });
-           
-              
-        buttonsPanel.add(backButton);
-
-        mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
+        // at North, show round number and which player turn
+        // at East, show captured pieces if any, else, show nothing and add padding
 
         add(mainPanel);
         

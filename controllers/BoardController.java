@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import models.Board;
 import models.Game;
@@ -112,5 +112,25 @@ public class BoardController implements ActionListener{
         for (PieceView btn : buttons) {
             btn.resetIcon();
         }
+    }
+
+    public JPanel generateBoardNumbers(JPanel numbersPanel) {
+        // generate text for numbers 1 to 7
+        for (int i = 6 ; i >= 1 ; i--) {
+            numbersPanel.add(new JLabel(Integer.toString(i)));
+        }
+
+        return numbersPanel;
+    }
+
+    public JPanel generateBoardLetters(JPanel lettersPanel) {
+        // generate text for letters A to G
+        for (int i = 0 ; i < 7 ; i++) {
+            // add some padding to the left
+            String text = "  " + Character.toString((char) (i + 65));
+            lettersPanel.add(new JLabel(text));
+        }
+
+        return lettersPanel;
     }
 }
