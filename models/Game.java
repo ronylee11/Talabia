@@ -14,14 +14,22 @@ public class Game {
     public Game() {
         players = new Player[2];
         createPlayer();
-        currentPlayerIndex = 0;
-        currentPlayer = players[currentPlayerIndex];
+        setCurrentPlayer(0);    // set index to 0, first player
         // Create a single instance of BoardView
         boardView = new BoardView(new Board(500, 500));
     }
 
     public static Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public static void setCurrentPlayer(int index) {
+        currentPlayer = players[index];
+        currentPlayerIndex = index;
+    }
+
+    public static int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
     }
 
     public static PieceColor getCurrentColor() {
@@ -39,6 +47,22 @@ public class Game {
 
     public static int getPlayerTurn() {
         return currentPlayerIndex + 1;
+    }
+
+    public static int getRoundCount() {
+        return roundCount;
+    }
+
+    public static void setRoundCount(int count) {
+        roundCount = count;
+    }
+
+    public static int getPlayCount() {
+        return playCount;
+    }
+
+    public static void setPlayCount(int count) {
+        playCount = count;
     }
 
     public static void printCurrentRound() {
@@ -61,7 +85,8 @@ public class Game {
 
     public static void switchPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 - 1,  1 - 0
-        currentPlayer = players[currentPlayerIndex];
+        setCurrentPlayer(currentPlayerIndex);
+
         playCount++;
 
         RoundCountCalculate();

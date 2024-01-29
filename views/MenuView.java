@@ -23,20 +23,17 @@ public class MenuView extends JFrame {
 
         panel.add(label, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1)); 
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 1)); 
 
         JButton startButton = new JButton("Start");
-        JButton loadButton = new JButton("Load");
         JButton exitButton = new JButton("Exit");
 
         // button size
         Dimension buttonSize = new Dimension(300, 50);
         startButton.setPreferredSize(buttonSize);
-        loadButton.setPreferredSize(buttonSize);
         exitButton.setPreferredSize(buttonSize);
 
         buttonPanel.add(startButton);
-        buttonPanel.add(loadButton);
         buttonPanel.add(exitButton);
         panel.add(buttonPanel, BorderLayout.CENTER);
 
@@ -44,12 +41,6 @@ public class MenuView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new Game(); // Start the game
-            }
-        });
-
-        loadButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // load function here
             }
         });
 

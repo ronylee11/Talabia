@@ -102,5 +102,10 @@ public abstract class Piece {
     public String getName() {
         return name;
     }
+
+     // New method for saving to file
+     public String toFileString() {
+        return String.format("%s,%s,%s,%s", getName(), getColor(), getCoordinate(), getImageUrl());
+    }
     
 }

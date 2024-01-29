@@ -110,7 +110,7 @@ public class BoardController implements ActionListener{
         }
     }
 
-    private void updateView() {
+    public void updateView() {
         for (PieceView btn : buttons) {
             btn.resetIcon();
         }

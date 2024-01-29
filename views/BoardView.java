@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import models.Board;
+import models.File;
 import models.Game;
 import controllers.BoardController;
 
@@ -11,6 +12,9 @@ import controllers.BoardController;
 public class BoardView extends JFrame {
     private Board model;
     private BoardController controller;
+    private JButton saveButton; // Added saveButton
+    private JButton loadButton; // Added loadButton
+    private File file;
 
     private JLabel roundLabel;
     private JLabel playerTurnLabel;
@@ -36,10 +40,15 @@ public class BoardView extends JFrame {
         this.model = model;
         controller = new BoardController(model, this);
 
+        file = new File(this, controller);
+
         // update Board to specified dimension
         controller.updateBoard(); 
         // generate board notations
         controller.generateBoardNotations(boardPanel);
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
 
         setSize(model.getDimensionX(), model.getDimensionY());
         // at West, create a column of numbers from 1 to 6 starting bottom
@@ -54,7 +63,8 @@ public class BoardView extends JFrame {
         JPanel lettersPanel = new JPanel();
         lettersPanel.setLayout(new GridLayout(1, 7));
         controller.generateBoardLetters(lettersPanel);
-        mainPanel.add(lettersPanel, BorderLayout.SOUTH);
+        // mainPanel.add(lettersPanel, BorderLayout.SOUTH);
+        bottomPanel.add(lettersPanel);
         // add padding to the top and left of the letters panel
         lettersPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 10, 0));
 
@@ -76,6 +86,37 @@ public class BoardView extends JFrame {
         mainPanel.add(capturedPiecesPanel, BorderLayout.EAST);
         // add padding to the left and right of the captured pieces panel
         capturedPiecesPanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
+
+        JPanel buttonsPanel = new JPanel();
+
+        // Added save button
+        saveButton = new JButton("Save");
+        saveButton.addActionListener(e -> {
+            String fileName = JOptionPane.showInputDialog(this, "Enter a file name to save the game:", "Save Game",
+                    JOptionPane.PLAIN_MESSAGE);
+            if (fileName != null && !fileName.trim().isEmpty()) {
+                file.saveGame(fileName);
+            } else {
+                JOptionPane.showMessageDialog(this, "No file name entered.");
+            }
+        });
+
+        // Added load button
+        loadButton = new JButton("Load");
+        loadButton.addActionListener(e -> {
+            String fileName = JOptionPane.showInputDialog(this, "Enter the file name to load the game from:", "Load Game",
+                    JOptionPane.PLAIN_MESSAGE);
+            if (fileName != null && !fileName.trim().isEmpty()) {
+                file.loadGame(fileName);
+            } else {
+                JOptionPane.showMessageDialog(this, "No file name entered.");
+            }
+        });
+        buttonsPanel.add(saveButton);
+        buttonsPanel.add(loadButton);
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 10, 0));
+        bottomPanel.add(buttonsPanel);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
         

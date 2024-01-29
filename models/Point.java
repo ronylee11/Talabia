@@ -14,12 +14,8 @@ public class Point extends Piece {
         return forward;
     }
 
-    private void setToForward() {
-        forward = true;
-    }
-
-    private void setToBackward() {
-        forward = false;
+    public void setForward(boolean b) {
+        forward = b;
     }
 
     public void setImageUrl2(String url) {
@@ -30,7 +26,7 @@ public class Point extends Piece {
         return switchDone;
     }
 
-    private void setSwitchDone(boolean b) {
+    public void setSwitchDone(boolean b) {
         switchDone = b;
     }
 
@@ -79,14 +75,20 @@ public class Point extends Piece {
                     switchUrl();
                     setSwitchDone(true);
                     if (coordinate.charAt(1) == '6')
-                        setToBackward();
+                    setForward(false);
                     else 
-                        setToForward();
+                        setForward(true);
                 } 
             }
             else {
                 setSwitchDone(false);
             }
         }
+    }
+
+    // New method for saving to file
+    @Override
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s", getName(), getColor(), getCoordinate(), getImageUrl(), imageUrl2, forward, switchDone);
     }
 }
