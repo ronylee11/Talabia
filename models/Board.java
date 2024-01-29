@@ -30,6 +30,7 @@ public class Board {
         return this.dimensionY;
     }
 
+    // Chia Zhi Xuan
     public void flipBoard() {
         PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
         pc.changeCoordinate();

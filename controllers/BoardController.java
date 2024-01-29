@@ -49,6 +49,7 @@ public class BoardController implements ActionListener{
         }
     }
 
+    // Chia Zhi Xuan
     @Override
     public void actionPerformed(ActionEvent e) {
         PieceView btn = (PieceView) e.getSource();
@@ -65,6 +66,7 @@ public class BoardController implements ActionListener{
         updateView();
     }
 
+    // Chia Zhi Xuan, Lee Rong Yi
     private boolean isPieceMove(String coordinate) {
         piece = PieceCoordinate.getPieceCoordinate().getPiece(previousCoordinate);
         if (piece != null && piece.getPossibleMovesList().contains(coordinate)) {
@@ -94,6 +96,7 @@ public class BoardController implements ActionListener{
         return false;
     }
 
+    // Chia Zhi Xuan
     private void handlePossibleMoveCheck(String coordinate) {
         piece = PieceCoordinate.getPieceCoordinate().getPiece(coordinate);
         if (piece != null)
@@ -101,6 +104,7 @@ public class BoardController implements ActionListener{
         previousCoordinate = coordinate;
     }
     
+    // Chia Zhi Xuan
     private void setHintPiece() {
         for (PieceView btn : buttons) {
             if (piece != null && piece.getPossibleMovesList().contains(btn.getCoordinate()))
@@ -110,6 +114,7 @@ public class BoardController implements ActionListener{
         }
     }
 
+    // Chia Zhi Xuan
     public void updateView() {
         for (PieceView btn : buttons) {
             btn.resetIcon();

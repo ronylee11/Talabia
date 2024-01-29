@@ -1,5 +1,6 @@
 package models;
 
+// Chia Zhi Xuan
 public class Sun extends Piece {
     public Sun(String imageUrl, String coordinate, PieceColor color) {
         super(imageUrl, coordinate, color);

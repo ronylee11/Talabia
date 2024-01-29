@@ -36,6 +36,7 @@ public class Game {
         return currentPlayer.getPlayerColor();
     }
 
+    // Chia Zhi Xuan
     private void createPlayer() {
         players[0] = new Player(PieceColor.YELLOW);
         players[1] = new Player(PieceColor.BLUE);
@@ -83,6 +84,7 @@ public class Game {
         }
     }
 
+    // Chia Zhi Xuan, Lee Rong Yi
     public static void switchPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 - 1,  1 - 0
         setCurrentPlayer(currentPlayerIndex);

@@ -62,6 +62,7 @@ public abstract class Piece {
 
     public void switchUrl(){};
 
+    // Chia Zhi Xuan
     public void movePiece(String currentCoordinate, String newCoordinate) {
         PieceCoordinate pc = PieceCoordinate.getPieceCoordinate();
         Piece piece = pc.getPiece(currentCoordinate);
@@ -73,6 +74,7 @@ public abstract class Piece {
         pc.placePiece(newCoordinate, piece);
     }
 
+    // Chia Zhi Xuan
     public boolean isMoveValid(String targetCoordinate, Piece piece) {
         // check if the piece color same with the player color
         if (piece.getColor().equals(Game.getCurrentColor())) {
@@ -103,6 +105,7 @@ public abstract class Piece {
         return name;
     }
 
+    // Wong Guang Yu
      // New method for saving to file
      public String toFileString() {
         return String.format("%s,%s,%s,%s", getName(), getColor(), getCoordinate(), getImageUrl());

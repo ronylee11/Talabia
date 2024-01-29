@@ -1,5 +1,6 @@
 package models;
 
+// Chia Zhi Xuan
 public class Point extends Piece {
     private boolean forward = true;
     private String imageUrl2; // in opposite direction

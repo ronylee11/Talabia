@@ -1,5 +1,7 @@
 package models;
 
+
+// Chia Zhi Xuan
 public class Hourglass extends Piece {
 
     public Hourglass(String imageUrl, String coordinate, PieceColor color) {

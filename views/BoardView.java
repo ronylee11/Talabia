@@ -8,6 +8,7 @@ import models.File;
 import models.Game;
 import controllers.BoardController;
 
+// Wong Guang Yu, Lee Rong Yi
 @SuppressWarnings("serial")
 public class BoardView extends JFrame {
     private Board model;
@@ -87,6 +88,7 @@ public class BoardView extends JFrame {
         // add padding to the left and right of the captured pieces panel
         capturedPiecesPanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
 
+        
         JPanel buttonsPanel = new JPanel();
 
         // Added save button

@@ -1,5 +1,6 @@
 package models;
 
+// Wong Guang Yu
 public class Plus extends Piece {
 
     public Plus(String imageUrl, String coordinate, PieceColor color) {

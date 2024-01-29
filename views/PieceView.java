@@ -74,6 +74,7 @@ public class PieceView extends JButton {
         return pieceSpawned;
     }
 
+    // Chia Zhi Xuan
     // reset hint border
     public void setHint(boolean hint) {
         if (hint)
@@ -82,6 +83,7 @@ public class PieceView extends JButton {
             setBorder(null);
     }
 
+    // Chia Zhi Xuan
     // update icon on the button
     public void resetIcon() {
         Piece piece = PieceCoordinate.getPieceCoordinate().getPiece(boardCoordinate);

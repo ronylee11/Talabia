@@ -1,5 +1,6 @@
 package models;
 
+// Wong Guang Yu
 public class Time extends Piece {
 
     public Time(String imageUrl, String coordinate, PieceColor color) {
