@@ -14,7 +14,6 @@ public class Game {
         createPlayer();
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
-        new BoardView(new Board(500, 500));
     }
 
     public static Player getCurrentPlayer() {
@@ -28,6 +27,14 @@ public class Game {
     private void createPlayer() {
         players[0] = new Player(PieceColor.YELLOW);
         players[1] = new Player(PieceColor.BLUE);
+    }
+
+    public static int getRound() {
+        return roundCount + 1;
+    }
+
+    public static int getPlayerTurn() {
+        return currentPlayerIndex + 1;
     }
 
     public static void printCurrentRound() {

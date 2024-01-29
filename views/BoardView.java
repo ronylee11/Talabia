@@ -55,7 +55,20 @@ public class BoardView extends JFrame {
         lettersPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 10, 0));
 
         // at North, show round number and which player turn
+        JPanel roundPanel = new JPanel();
+        roundPanel.setLayout(new GridLayout(1, 2));
+        controller.generateRoundPanel(roundPanel);
+        mainPanel.add(roundPanel, BorderLayout.NORTH);
+        // add padding to the top, bottom and left of the round panel
+        roundPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 10, 0));
+
         // at East, show captured pieces if any, else, show nothing and add padding
+        JPanel capturedPiecesPanel = new JPanel();
+        capturedPiecesPanel.setLayout(new GridLayout(6, 1));
+        //controller.generateCapturedPiecesPanel(capturedPiecesPanel);
+        mainPanel.add(capturedPiecesPanel, BorderLayout.EAST);
+        // add padding to the left and right of the captured pieces panel
+        capturedPiecesPanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
 
         add(mainPanel);
         

@@ -132,4 +132,12 @@ public class BoardController implements ActionListener{
 
         return lettersPanel;
     }
+
+    public JPanel generateRoundPanel(JPanel roundPanel) {
+        // generate text for round number and which player turn
+        roundPanel.add(new JLabel("Round: " + Game.getRound()));
+        roundPanel.add(new JLabel("Player: " + Game.getPlayerTurn()));
+
+        return roundPanel;
+    }
 }
