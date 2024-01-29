@@ -8,7 +8,7 @@ import models.File;
 import models.Game;
 import controllers.BoardController;
 
-// Wong Guang Yu, Lee Rong Yi
+// Wong Guang Yu, Lee Rong Yi, AU JI HIN
 @SuppressWarnings("serial")
 public class BoardView extends JFrame {
     private Board model;
