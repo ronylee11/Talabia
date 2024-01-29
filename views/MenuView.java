@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import models.Game;
 
-//AU JI HIN
+//AU JI HIN, Lee Rong Yi
 public class MenuView extends JFrame {
 
     public MenuView() {

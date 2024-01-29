@@ -13,12 +13,14 @@ public class PieceController {
                                                 "a5", "b5", "c5", "d5", "e5", "f5", "g5",
                                                 "a6", "b6", "c6", "d6", "e6", "f6", "g6"};
 
+    // Lee Rong Yi
     public PieceController(Piece p, PieceView pv) {
         this.model = p;
         this.view = pv;
         pieceCoordinate = PieceCoordinate.getPieceCoordinate();
     }
 
+    // Lee Rong Yi, Sally Chia Zhi Xuan
     public void generatePieces() {
         String[] notationSequence = view.getNotationSequence();
         int pieceSpawned = view.pieceSpawned();
@@ -92,22 +94,4 @@ public class PieceController {
             }
         }
     }
-
-    public void setNotations(String boardCoordinate) {
-        // if boardCoordinate.charAt(1) == '1', set the columns, a~g
-        // if boardCoordinate.charAt(0) == 'a', set the row, 1~6
-        // if boardCoordinate == 'a1', setText to 'a1'
-        if (boardCoordinate.equals("a1")) {
-            view.setText(boardCoordinate);
-        } else if (boardCoordinate.charAt(1) == '1') {
-            view.setText("" + boardCoordinate.charAt(0));
-        } else if (boardCoordinate.charAt(0) == 'a') {
-            view.setText("" + boardCoordinate.charAt(1));
-        }  
-        view.setVerticalTextPosition(JButton.BOTTOM);
-        view.setHorizontalTextPosition(JButton.CENTER);
-    }
-    
-    public void switchMovingMethod() {};
-
 }

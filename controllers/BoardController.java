@@ -20,20 +20,24 @@ public class BoardController implements ActionListener{
     private String previousCoordinate;
     private Piece piece;
 
+    // Lee Rong Yi
     public BoardController(Board b, BoardView bv) {
         this.model = b;
         this.view = bv;
     }
 
+    // Lee Rong Yi
     public void setBoardDimension(int dimensionX, int dimensionY) {
         model.setDimensionX(dimensionX);
         model.setDimensionY(dimensionY);
     }
 
+    // Lee Rong Yi
     public void updateBoard() {
         view.repaint();
     }
 
+    // Lee Rong Yi
     public void generateBoardNotations(JPanel p) {
         for (int i = 0; i < 42; i++) {
             PieceView button = new PieceView();
@@ -121,6 +125,7 @@ public class BoardController implements ActionListener{
         }
     }
 
+    // Lee Rong Yi
     public JPanel generateBoardNumbers(JPanel numbersPanel) {
         // generate text for numbers 1 to 7
         for (int i = 6 ; i >= 1 ; i--) {
@@ -130,6 +135,7 @@ public class BoardController implements ActionListener{
         return numbersPanel;
     }
 
+    // Lee Rong Yi
     public JPanel generateBoardLetters(JPanel lettersPanel) {
         // generate text for letters A to G
         for (int i = 0 ; i < 7 ; i++) {
@@ -141,6 +147,7 @@ public class BoardController implements ActionListener{
         return lettersPanel;
     }
 
+    // Lee Rong Yi
     public JPanel generateRoundPanel(JPanel roundPanel) {
         // generate text for round number and which player turn
         roundPanel.add(new JLabel("Round: " + Game.getRound()));

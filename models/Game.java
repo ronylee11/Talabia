@@ -42,26 +42,32 @@ public class Game {
         players[1] = new Player(PieceColor.BLUE);
     }
 
+    // Lee Rong Yi
     public static int getRound() {
         return roundCount + 1;
     }
 
+    // Lee Rong Yi
     public static int getPlayerTurn() {
         return currentPlayerIndex + 1;
     }
 
+    // Au Ji Hin
     public static int getRoundCount() {
         return roundCount;
     }
 
+    // Au Ji Hin
     public static void setRoundCount(int count) {
         roundCount = count;
     }
 
+    // Au Ji Hin
     public static int getPlayCount() {
         return playCount;
     }
 
+    // Au Ji Hin
     public static void setPlayCount(int count) {
         playCount = count;
     }
@@ -77,7 +83,7 @@ public class Game {
         System.out.println("Current player's turn: " + Game.getCurrentPlayer().getPlayerColor());
     }
 
-    //AU JI HIN
+    //AU JI HIN, LEE RONG YI
     public static void RoundCountCalculate() {
         if (playCount % 2 == 0) { // if both players have played
             roundCount++; // 1 round has completed
@@ -87,7 +93,7 @@ public class Game {
         }
     }
 
-    // Chia Zhi Xuan, Lee Rong Yi
+    // Chia Zhi Xuan, Lee Rong Yi, Au Ji Hin
     public static void switchPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 - 1,  1 - 0
         setCurrentPlayer(currentPlayerIndex);

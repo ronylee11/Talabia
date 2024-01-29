@@ -20,6 +20,7 @@ public class PieceView extends JButton {
     PieceController controller;
     Piece model;
 
+    // Lee Rong Yi
     // generate board coordinates from a6~g6, a5~g5.. to 1~14, 29~42
     String[] generateNotationSequence() {
         ArrayList<String> notationSequence = new ArrayList<String>();
@@ -31,6 +32,7 @@ public class PieceView extends JButton {
         return notationSequence.toArray(new String[notationSequence.size()]);
     }
 
+    // Lee Rong Yi
     public PieceView() {
         // add image
         //super(new ImageIcon("assets/arrow-y.png"));
@@ -50,8 +52,6 @@ public class PieceView extends JButton {
         boardCoordinate = notationSequence[pieceSpawned - 1];
         // connect PieceController
         controller = new PieceController(model, this);
-        // set text
-        // controller.setNotations(boardCoordinate);
         // generate respective piece on locations
         controller.generatePieces();
 
@@ -62,14 +62,17 @@ public class PieceView extends JButton {
         setContentAreaFilled(false);
     }
 
+    // Lee Rong Yi
     public String getCoordinate() {
         return boardCoordinate;
     }
 
+    // Lee Rong Yi
     public String[] getNotationSequence() {
         return notationSequence;
     }
 
+    // Lee Rong Yi
     public int pieceSpawned() {
         return pieceSpawned;
     }
