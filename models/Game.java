@@ -14,6 +14,7 @@ public class Game {
         createPlayer();
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
+        new BoardView(new Board(500, 500));
     }
 
     public static Player getCurrentPlayer() {
