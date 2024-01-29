@@ -53,7 +53,7 @@ public class MenuView extends JFrame {
         setSize(500, 200); 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setResizable(false);
         setVisible(true);
     }
 }
