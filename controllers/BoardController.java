@@ -74,6 +74,9 @@ public class BoardController implements ActionListener{
                 // if captured piece is Sun, print "Game Over"
                 if (PieceCoordinate.getPieceCoordinate().getPiece(coordinate).getName().equals("Sun")) {
                     System.out.println("Game Over!");
+                    // close window and open new popup window saying "Congratulations! Player X wins!"
+                    view.dispose();
+                    new JOptionPane().showMessageDialog(null, "Congratulations! Player " + Game.getCurrentPlayer().getPlayerColor() + " wins!");
                     System.exit(0);
                 }
                 System.out.println("Piece captured!");
