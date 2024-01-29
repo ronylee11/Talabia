@@ -20,7 +20,7 @@ public class PieceController {
         pieceCoordinate = PieceCoordinate.getPieceCoordinate();
     }
 
-    // Lee Rong Yi, Sally Chia Zhi Xuan
+    // Lee Rong Yi, Sally Khor Zhi Xuan
     public void generatePieces() {
         String[] notationSequence = view.getNotationSequence();
         int pieceSpawned = view.pieceSpawned();
